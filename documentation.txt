@@ -1,0 +1,30 @@
+The Ultimate Python Bootcamp - Udemy Course HC
+
+
+
+Section 01: Introduction to coding world with Python
+
+
+01. Course introduction
+
+02. Meet your instructor - Hitesh
+
+03. Course Diagrams
+
+04. What is programming ?
+
+05. Convert that into Python code
+
+06. A real world Python code
+
+07. Why to use Python
+
+08. Writing first Python code on MAC
+
+09. Writing first Python code on Windows
+
+10. Organize Python code like a pro
+
+11. PEP8 and Zen of Python
+
+Quiz 01: Basics of Python & programming

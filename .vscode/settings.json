@@ -1,0 +1,11 @@
+{
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "runOnSave.onlyRunOnManualSave": true,
+    "runOnSave.commands": [
+        {
+            "languages": ["python"],
+            "command": "python.execInTerminal",
+            "runIn": "vscode"
+        }
+    ]
+}

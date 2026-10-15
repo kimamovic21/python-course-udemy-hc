@@ -12,17 +12,18 @@ My Python learning repository, starting with the basics and adding exercises as 
 | Folder | What I practise |
 | --- | --- |
 | [01_starter](01_starter/README.md) | My first Python program: displaying text with `print()` and exploring The Zen of Python with `import this`. |
+| [02_datatypes](02_datatypes/README.md) | Object identity, mutable sets, integers, booleans, floats, and the completed Playing with Numbers exercise. Section in progress. |
 
-Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders (`02_...`, `03_...`, etc.) will be added to this overview as the course progresses.
+Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders will be added to this overview as the course progresses.
 
 ## Supporting files
 
-- [`.vscode/settings.json`](.vscode/settings.json) — project editor settings for the Python environment manager and automatic execution in the terminal after **Ctrl + S**, using the selected interpreter.
+- [`.vscode/settings.json`](.vscode/settings.json) — project editor settings for Python, Black formatting, and automatic execution in the terminal after **Ctrl + S**, using the selected interpreter.
 - [`documentation.txt`](documentation.txt) — tutorial video names, maintained manually to keep track of my course progress.
 
 ## Quick start
 
-Open the project root in VS Code with [Python 3](https://www.python.org/), [Python by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-python.python), and [Run on Save by pucelle](https://marketplace.visualstudio.com/items?itemName=pucelle.run-on-save) installed. Select your Python interpreter, edit a Python file, and save with **Ctrl + S** to run it in the terminal.
+Open the project root in VS Code with [Python 3](https://www.python.org/) and these extensions installed: [Python by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-python.python), [Run on Save by pucelle](https://marketplace.visualstudio.com/items?itemName=pucelle.run-on-save), and [Black Formatter by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter). Select your Python interpreter, edit a Python file, and save with **Ctrl + S** to format and run it in the terminal. Use **Shift + Alt + F** to format a file manually.
 
 See [01_starter: first-time setup](01_starter/README.md#first-time-setup) for step-by-step instructions.
 

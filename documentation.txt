@@ -23,8 +23,21 @@ Section 01: Introduction to coding world with Python
 
 09. Writing first Python code on Windows
 
-10. Organize Python code like a pro
+10. Get everything in virtual environment
 
-11. PEP8 and Zen of Python
+11. Organize Python code like a pro
+
+12. PEP8 and Zen of Python
 
 Quiz 01: Basics of Python & programming
+
+
+
+Section 02: Data types in Python
+
+
+13. Objects - mutable and immutable in Python
+
+14. Numbers, booleans and operators in depth in Python
+
+Coding exercise 01: Playing with numbers

@@ -1,5 +1,9 @@
 {
     "python-envs.defaultEnvManager": "ms-python.python:system",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
     "runOnSave.onlyRunOnManualSave": true,
     "runOnSave.commands": [
         {

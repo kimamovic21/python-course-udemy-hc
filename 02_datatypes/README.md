@@ -1,8 +1,8 @@
 # 02 — Data Types
 
-This section explores Python values, objects, numbers, strings, and boolean logic through small examples about making tea and deciding whether to go for a walk.
+This section introduces Python data types and their behaviour through small examples about tea, weather, temperatures, and shopping.
 
-**Status: in progress.** This checkpoint covers chapters 1–6 and two coding exercises: **Playing with Numbers** and **Should You Go for a Walk?** More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers chapters 1–8 and four coding exercises. More lessons will be added as I continue the course.
 
 ## Files covered so far
 
@@ -14,6 +14,8 @@ This section explores Python values, objects, numbers, strings, and boolean logi
 | [chapter_4.py](chapter_4.py) | Booleans, conversion with `bool()`, and the `and` operator. |
 | [chapter_5.py](chapter_5.py) | Floating-point numbers, precision, and `sys.float_info`. |
 | [chapter_6.py](chapter_6.py) | Strings, f-strings, slicing, reversing text, and UTF-8 encoding and decoding. |
+| [chapter_7.py](chapter_7.py) | Tuples, unpacking values, swapping variables, and membership testing with `in`. |
+| [chapter_8.py](chapter_8.py) | List operations, `max()` and `min()`, concatenation, repetition, and `bytearray`. |
 
 ## Coding exercise files
 
@@ -23,6 +25,8 @@ Each exercise has a Markdown file containing the original challenge and a separa
 | --- | --- | --- |
 | 01 — Playing with Numbers | [CODING_EXERCISE_01.md](CODING_EXERCISE_01.md) | [coding_exercise_01.py](coding_exercise_01.py) |
 | 02 — Should You Go for a Walk? | [CODING_EXERCISE_02.md](CODING_EXERCISE_02.md) | [coding_exercise_02.py](coding_exercise_02.py) |
+| 03 — Swapping Temperature | [CODING_EXERCISE_03.md](CODING_EXERCISE_03.md) | [coding_exercise_03.py](coding_exercise_03.py) |
+| 04 — Shopping List | [CODING_EXERCISE_04.md](CODING_EXERCISE_04.md) | [coding_exercise_04.py](coding_exercise_04.py) |
 
 ## Chapter 1: integers and object identity
 
@@ -113,6 +117,51 @@ The final part of the lesson converts `"Chai Spécial"` between text and bytes:
 
 Encoding and decoding with the same encoding restores the text, including its accented character.
 
+## Chapter 7: tuples, unpacking, and swapping
+
+`masala_spices = ("cardamom", "cloves", "cinnamon")` creates a **tuple**, an ordered collection whose items cannot be replaced, added, or removed in place.
+
+The lesson demonstrates three operations:
+
+- **Unpacking:** `spice1, spice2, spice3 = masala_spices` assigns each tuple item to a separate variable in order.
+- **Swapping:** `ginger_ratio, cardamom_ratio = cardamom_ratio, ginger_ratio` exchanges the values `2` and `1`. Python evaluates the right-hand side before assigning the values on the left.
+- **Membership testing:** `"cinnamon" in masala_spices` returns `True` because the tuple contains that value.
+
+Swapping changes which values the variables refer to; it does not modify the original `masala_spices` tuple.
+
+## Chapter 8: lists and byte arrays
+
+A **list** is an ordered, mutable collection. This lesson starts with ingredients such as `"water"`, `"milk"`, and `"black tea"`, then changes the lists with these methods:
+
+| Method | What it does |
+| --- | --- |
+| `.append(value)` | Adds one item at the end. |
+| `.remove(value)` | Removes the first matching item. |
+| `.extend(other_list)` | Adds the items from another list at the end. |
+| `.insert(index, value)` | Adds an item at a position; indexes start at `0`. |
+| `.pop()` | Removes and returns the last item. |
+| `.reverse()` | Reverses the current order in place. |
+| `.sort()` | Sorts the list in place; the strings in this lesson are sorted alphabetically. |
+
+For `sugar_levels = [1, 2, 3, 4, 5]`, `max(sugar_levels)` returns `5` and `min(sugar_levels)` returns `1`.
+
+The `+` operator creates a new list by joining two lists. The `*` operator creates a new list by repeating the items: `["black tea", "water"] * 3` contains six items. These expressions leave the original lists unchanged.
+
+The final example creates a **bytearray**, a mutable sequence of bytes. Each byte has a value from `0` to `255`:
+
+```python
+raw_spice_data = bytearray(b"CINNAMON")
+raw_spice_data = raw_spice_data.replace(b"CINNA", b"CARD")
+```
+
+The `b` prefix marks a bytes literal. Replacing `CINNA` with `CARD` leaves the ending `MON`, producing `CARDMON`. The `.replace()` method returns a new `bytearray`, which is assigned back to `raw_spice_data`.
+
+The final line prints:
+
+```text
+Bytes: bytearray(b'CARDMON')
+```
+
 ## Coding exercise 01: Playing with Numbers
 
 **Completed: all Udemy tests passed.**
@@ -163,6 +212,52 @@ True
 ```
 
 The solution prints only these four boolean values, one per line, without extra labels.
+
+## Coding exercise 03: Swapping Temperature
+
+Read the [challenge description](CODING_EXERCISE_03.md) and the [Python solution](coding_exercise_03.py).
+
+The initial values are `min_temp = 40` and `max_temp = 25`. Tuple packing and unpacking swap them without an extra variable:
+
+```python
+min_temp, max_temp = max_temp, min_temp
+```
+
+The old values on the right form `(25, 40)`, then are assigned to the variables on the left. The program prints the corrected minimum first, followed by the maximum:
+
+```text
+25
+40
+```
+
+## Coding exercise 04: Shopping List
+
+Read the [challenge description](CODING_EXERCISE_04.md) and the [Python solution](coding_exercise_04.py).
+
+The program starts with `my_cart = ["apples", "bananas", "milk"]` and applies the requested list operations in order. It prints the list after each requested change.
+
+- `.append()` adds bread, `.insert()` adds ketchup at the beginning, and `.remove()` removes bananas.
+- `.pop()` removes bread, the last item at that point, and stores it in `removed_item`. The program prints that item separately.
+- `.extend()` adds rice and butter; `.sort()` orders the list alphabetically, and `.reverse()` reverses that order.
+- `combined_cart = my_cart + ["juice", "jam"]` creates a new combined list without changing `my_cart`.
+- `duplicated_cart = my_cart * 2` repeats the current five-item cart twice. Juice and jam appear only in `combined_cart`.
+- `.split()` converts `"tomato cucumber spinach"` into a list of three words by splitting at whitespace.
+
+Expected output, without extra labels:
+
+```text
+['apples', 'bananas', 'milk']
+['apples', 'bananas', 'milk', 'bread']
+['ketchup', 'apples', 'bananas', 'milk', 'bread']
+['ketchup', 'apples', 'milk', 'bread']
+bread
+['ketchup', 'apples', 'milk', 'rice', 'butter']
+['apples', 'butter', 'ketchup', 'milk', 'rice']
+['rice', 'milk', 'ketchup', 'butter', 'apples']
+['rice', 'milk', 'ketchup', 'butter', 'apples', 'juice', 'jam']
+['rice', 'milk', 'ketchup', 'butter', 'apples', 'rice', 'milk', 'ketchup', 'butter', 'apples']
+['tomato', 'cucumber', 'spinach']
+```
 
 ## How to run these examples
 

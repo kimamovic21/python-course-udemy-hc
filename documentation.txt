@@ -49,3 +49,9 @@ Coding exercise 02: Should you go for a walk ?
 16. Tuples and membership testing
 
 Coding exercise 03: Swapping temperature
+
+17. Basics of list in Python
+
+18. Operator overloading and byteaarray() in Python
+
+Coding exercise 04: Shopping list

@@ -1,8 +1,8 @@
 # 02 — Data Types
 
-This section explores Python values, objects, and basic number operations through small examples about making tea.
+This section explores Python values, objects, numbers, strings, and boolean logic through small examples about making tea and deciding whether to go for a walk.
 
-**Status: in progress.** This checkpoint covers chapters 1–5 and the completed **Playing with Numbers** exercise. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers chapters 1–6 and two coding exercises: **Playing with Numbers** and **Should You Go for a Walk?** More lessons will be added as I continue the course.
 
 ## Files covered so far
 
@@ -13,7 +13,16 @@ This section explores Python values, objects, and basic number operations throug
 | [chapter_3.py](chapter_3.py) | Arithmetic operators and readable large numbers. |
 | [chapter_4.py](chapter_4.py) | Booleans, conversion with `bool()`, and the `and` operator. |
 | [chapter_5.py](chapter_5.py) | Floating-point numbers, precision, and `sys.float_info`. |
-| [coding_exercise_01.py](coding_exercise_01.py) | Playing with Numbers: six arithmetic operations with exact output. |
+| [chapter_6.py](chapter_6.py) | Strings, f-strings, slicing, reversing text, and UTF-8 encoding and decoding. |
+
+## Coding exercise files
+
+Each exercise has a Markdown file containing the original challenge and a separate Python file containing the solution. Read the challenge first, then compare it with the solution.
+
+| Exercise | Challenge description | Python solution |
+| --- | --- | --- |
+| 01 — Playing with Numbers | [CODING_EXERCISE_01.md](CODING_EXERCISE_01.md) | [coding_exercise_01.py](coding_exercise_01.py) |
+| 02 — Should You Go for a Walk? | [CODING_EXERCISE_02.md](CODING_EXERCISE_02.md) | [coding_exercise_02.py](coding_exercise_02.py) |
 
 ## Chapter 1: integers and object identity
 
@@ -80,9 +89,35 @@ Many decimal values are stored approximately as binary floating-point numbers. A
 
 `Fraction` and `Decimal` are also imported in the current file, but are not used in its calculations yet.
 
+## Chapter 6: strings, slicing, and UTF-8
+
+A **string** (`str`) stores text. `chai_type`, `customer_name`, `chai_description`, and `label_text` all contain strings in this example.
+
+An **f-string** starts with `f` before the quotation marks. Expressions inside `{}` are replaced with their values, allowing the order message to include the customer's name and type of chai.
+
+String slicing extracts part of a string or changes the direction in which it is read. For `chai_description = "Aromatic and Bold"`:
+
+| Expression | Result | Explanation |
+| --- | --- | --- |
+| `chai_description[:8]` | `"Aromatic"` | Characters from the start up to, but not including, index `8`. |
+| `chai_description[12:]` | `" Bold"` | Characters from index `12` to the end, including the space before `Bold`. |
+| `chai_description[::-1]` | `"dloB dna citamorA"` | The entire description in reverse order. |
+
+String indexes start at `0`. The reverse slice produces the whole reversed description, even though the current program labels that output as `Last word`.
+
+The final part of the lesson converts `"Chai Spécial"` between text and bytes:
+
+- `.encode("utf-8")` converts the string into a `bytes` object stored in `encoded_label`.
+- The encoded value is displayed as `b'Chai Sp\xc3\xa9cial'`. The `b` prefix identifies bytes; the accented `é` is represented by two bytes in UTF-8.
+- `.decode("utf-8")` converts those bytes back into the original string, stored in `decoded_label`.
+
+Encoding and decoding with the same encoding restores the text, including its accented character.
+
 ## Coding exercise 01: Playing with Numbers
 
 **Completed: all Udemy tests passed.**
+
+Read the [challenge description](CODING_EXERCISE_01.md) and the [Python solution](coding_exercise_01.py).
 
 The program uses `first_number = 10` and `second_number = 5`. It prints the results of addition (`+`), subtraction (`-`), multiplication (`*`), division (`/`), floor division (`//`), and modulus (`%`), in that order.
 
@@ -100,6 +135,34 @@ Expected output:
 The exercise prints **only the results**, one per line. Labels such as `Addition:` or `Division:` made the Udemy tests fail because the tests expected an exact output match.
 
 Notice that `/` produces `2.0`, a `float`, even though the division has no remainder. With these integer inputs, `//` produces `2`, an `int`.
+
+## Coding exercise 02: Should You Go for a Walk?
+
+Read the [challenge description](CODING_EXERCISE_02.md) and the [Python solution](coding_exercise_02.py).
+
+The starting conditions are `is_sunny = True` and `have_umbrella = False`. The exercise combines these boolean values with three logical operators:
+
+- `not` reverses a boolean value: `True` becomes `False`, and `False` becomes `True`.
+- `and` returns `True` when both boolean conditions are `True`.
+- `or` returns `True` when at least one boolean condition is `True`.
+
+| Expression | Evaluation | Result |
+| --- | --- | --- |
+| `not is_sunny` | `not True` | `False` |
+| `not have_umbrella` | `not False` | `True` |
+| `is_sunny and not have_umbrella` | `True and True` | `True` |
+| `is_sunny or have_umbrella` | `True or False` | `True` |
+
+Expected output, in the order requested by the challenge:
+
+```text
+False
+True
+True
+True
+```
+
+The solution prints only these four boolean values, one per line, without extra labels.
 
 ## How to run these examples
 

@@ -41,3 +41,7 @@ Section 02: Data types in Python
 14. Numbers, booleans and operators in depth in Python
 
 Coding exercise 01: Playing with numbers
+
+15. String - index, slice and encoding
+
+Coding exercise 02: Should you go for a walk ?

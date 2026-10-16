@@ -45,3 +45,7 @@ Coding exercise 01: Playing with numbers
 15. String - index, slice and encoding
 
 Coding exercise 02: Should you go for a walk ?
+
+16. Tuples and membership testing
+
+Coding exercise 03: Swapping temperature

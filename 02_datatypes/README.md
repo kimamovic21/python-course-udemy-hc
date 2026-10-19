@@ -1,8 +1,8 @@
 # 02 — Data Types
 
-This section introduces Python data types and their behaviour through small examples about tea, weather, temperatures, and shopping.
+This section introduces Python data types and their behaviour through small examples about tea, weather, temperatures, shopping, and store inventory.
 
-**Status: in progress.** This checkpoint covers chapters 1–8 and four coding exercises. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers chapters 1–9 and five coding exercises. More lessons will be added as I continue the course.
 
 ## Files covered so far
 
@@ -16,6 +16,7 @@ This section introduces Python data types and their behaviour through small exam
 | [chapter_6.py](chapter_6.py) | Strings, f-strings, slicing, reversing text, and UTF-8 encoding and decoding. |
 | [chapter_7.py](chapter_7.py) | Tuples, unpacking values, swapping variables, and membership testing with `in`. |
 | [chapter_8.py](chapter_8.py) | List operations, `max()` and `min()`, concatenation, repetition, and `bytearray`. |
+| [chapter_9.py](chapter_9.py) | Set union, intersection, difference, and membership testing. |
 
 ## Coding exercise files
 
@@ -27,6 +28,7 @@ Each exercise has a Markdown file containing the original challenge and a separa
 | 02 — Should You Go for a Walk? | [CODING_EXERCISE_02.md](CODING_EXERCISE_02.md) | [coding_exercise_02.py](coding_exercise_02.py) |
 | 03 — Swapping Temperature | [CODING_EXERCISE_03.md](CODING_EXERCISE_03.md) | [coding_exercise_03.py](coding_exercise_03.py) |
 | 04 — Shopping List | [CODING_EXERCISE_04.md](CODING_EXERCISE_04.md) | [coding_exercise_04.py](coding_exercise_04.py) |
+| 05 — Managing Store Inventory | [CODING_EXERCISE_05.md](CODING_EXERCISE_05.md) | [coding_exercise_05.py](coding_exercise_05.py) |
 
 ## Chapter 1: integers and object identity
 
@@ -162,6 +164,21 @@ The final line prints:
 Bytes: bytearray(b'CARDMON')
 ```
 
+## Chapter 9: comparing sets
+
+The lesson creates two sets: `essential_spices` contains cardamom, ginger, and cinnamon; `optional_spices` contains cloves, ginger, and black pepper.
+
+| Operator | Operation | Result in this lesson |
+| --- | --- | --- |
+| `\|` | Union: all unique values from both sets. | Cardamom, ginger, cinnamon, cloves, and black pepper. |
+| `&` | Intersection: values present in both sets. | Ginger. |
+| `-` | Difference: values in the first set but not the second. | Cardamom and cinnamon. |
+| `in` | Membership: check whether a value is present. | `"cloves" in optional_spices` returns `True`. |
+
+The union, intersection, and difference expressions create new sets, leaving the original sets unchanged. Difference is directional: `essential_spices - optional_spices` asks specifically which essential spices are missing from the optional set.
+
+Sets do not guarantee a display order. Focus on which values are included when reading the printed results.
+
 ## Coding exercise 01: Playing with Numbers
 
 **Completed: all Udemy tests passed.**
@@ -257,6 +274,33 @@ bread
 ['rice', 'milk', 'ketchup', 'butter', 'apples', 'juice', 'jam']
 ['rice', 'milk', 'ketchup', 'butter', 'apples', 'rice', 'milk', 'ketchup', 'butter', 'apples']
 ['tomato', 'cucumber', 'spinach']
+```
+
+## Coding exercise 05: Managing Store Inventory
+
+Read the [challenge description](CODING_EXERCISE_05.md) and the [Python solution](coding_exercise_05.py).
+
+The program compares the products available in two branches:
+
+- Branch A: bread, milk, butter, and jam.
+- Branch B: bread, cheese, butter, and ketchup.
+
+The union contains all six unique products. The intersection contains bread and butter. The difference `branch_a_products - branch_b_products` contains milk and jam. Checking for ketchup in branch A returns `False`.
+
+`essential_items = frozenset({"milk", "bread", "ketchup"})` creates an **immutable set**. Its elements cannot be added or removed after creation. Membership checks and set comparisons are still supported.
+
+The solution uses **f-strings** to label each result, making it clear which branch or operation is being displayed.
+
+Example output; the order of elements inside each set or frozenset may vary:
+
+```text
+Branch A products: {'bread', 'milk', 'butter', 'jam'}
+Branch B products: {'bread', 'cheese', 'butter', 'ketchup'}
+Union of both branches: {'bread', 'milk', 'butter', 'jam', 'cheese', 'ketchup'}
+Intersection of both branches: {'bread', 'butter'}
+Products only in branch A: {'milk', 'jam'}
+Is ketchup available in branch A? False
+Essential items (frozenset): frozenset({'milk', 'bread', 'ketchup'})
 ```
 
 ## How to run these examples

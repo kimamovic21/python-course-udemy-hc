@@ -59,3 +59,7 @@ Coding exercise 04: Shopping list
 19. Set and frozenset in Python
 
 Coding exercise 05: Managing store inventory
+
+20. Dictionary in Python
+
+Coding exercise 06: Customer profile management

@@ -12,7 +12,7 @@ My Python learning repository, starting with the basics and adding exercises as 
 | Folder | What I practise |
 | --- | --- |
 | [01_starter](01_starter/README.md) | My first Python program: displaying text with `print()` and exploring The Zen of Python with `import this`. |
-| [02_datatypes](02_datatypes/README.md) | Python values, text, bytes, tuples, lists, sets, frozensets, and five coding exercises with challenge descriptions and solutions. Section in progress. |
+| [02_datatypes](02_datatypes/README.md) | Python values, text, bytes, tuples, lists, sets, frozensets, dictionaries, and six coding exercises with challenge descriptions and solutions. Section in progress. |
 
 Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders will be added to this overview as the course progresses.
 

@@ -1,8 +1,8 @@
 # 02 — Data Types
 
-This section introduces Python data types and their behaviour through small examples about tea, weather, temperatures, shopping, and store inventory.
+This section introduces Python data types and their behaviour through small examples about tea, weather, temperatures, shopping, store inventory, and customer profiles.
 
-**Status: in progress.** This checkpoint covers chapters 1–9 and five coding exercises. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers chapters 1–10 and six coding exercises. More lessons will be added as I continue the course.
 
 ## Files covered so far
 
@@ -17,6 +17,7 @@ This section introduces Python data types and their behaviour through small exam
 | [chapter_7.py](chapter_7.py) | Tuples, unpacking values, swapping variables, and membership testing with `in`. |
 | [chapter_8.py](chapter_8.py) | List operations, `max()` and `min()`, concatenation, repetition, and `bytearray`. |
 | [chapter_9.py](chapter_9.py) | Set union, intersection, difference, and membership testing. |
+| [chapter_10.py](chapter_10.py) | Dictionaries: creating, accessing, updating, and removing key-value pairs. |
 
 ## Coding exercise files
 
@@ -29,6 +30,7 @@ Each exercise has a Markdown file containing the original challenge and a separa
 | 03 — Swapping Temperature | [CODING_EXERCISE_03.md](CODING_EXERCISE_03.md) | [coding_exercise_03.py](coding_exercise_03.py) |
 | 04 — Shopping List | [CODING_EXERCISE_04.md](CODING_EXERCISE_04.md) | [coding_exercise_04.py](coding_exercise_04.py) |
 | 05 — Managing Store Inventory | [CODING_EXERCISE_05.md](CODING_EXERCISE_05.md) | [coding_exercise_05.py](coding_exercise_05.py) |
+| 06 — Customer Profile Management | [CODING_EXERCISE_06.md](CODING_EXERCISE_06.md) | [coding_exercise_06.py](coding_exercise_06.py) |
 
 ## Chapter 1: integers and object identity
 
@@ -179,6 +181,28 @@ The union, intersection, and difference expressions create new sets, leaving the
 
 Sets do not guarantee a display order. Focus on which values are included when reading the printed results.
 
+## Chapter 10: dictionaries and key-value pairs
+
+A **dictionary** (`dict`) stores values under keys. In `{"size": "Medium"}`, `"size"` is the key and `"Medium"` is its value. Dictionaries are mutable and preserve insertion order.
+
+The lesson uses tea orders and recipes to practise:
+
+- Creating dictionaries with `dict(type="Masala Chai", size="Large", sugar=2)` and `{...}`, or starting with an empty `{}`.
+- Adding entries with `chai_recipe["base"] = "black tea"` and reading values with `chai_recipe["base"]`.
+- Deleting an entry with `del chai_recipe["liquid"]`.
+- Checking whether a key exists with `"sugar" in chai_order`, which returns `True`.
+- Inspecting keys, values, and key-value pairs with `.keys()`, `.values()`, and `.items()`.
+- Removing and returning the last inserted pair with `.popitem()`. For the second order, this returns `('sugar', 1)`.
+- Adding cardamom and ginger to the recipe with `.update(extra_spices)`.
+
+The second order contains `"size": "Medium"`, so this line assigns `"Medium"` to `customer_note`:
+
+```python
+customer_note = chai_order.get("size", "NO Note")
+```
+
+`.get(key, default)` returns the value when the key exists, or the default when it is missing. Here, `"NO Note"` is used only if `"size"` is missing. The variable name `customer_note` does not change which key is read.
+
 ## Coding exercise 01: Playing with Numbers
 
 **Completed: all Udemy tests passed.**
@@ -301,6 +325,38 @@ Intersection of both branches: {'bread', 'butter'}
 Products only in branch A: {'milk', 'jam'}
 Is ketchup available in branch A? False
 Essential items (frozenset): frozenset({'milk', 'bread', 'ketchup'})
+```
+
+## Coding exercise 06: Customer Profile Management
+
+Read the [challenge description](CODING_EXERCISE_06.md) and the [Python solution](coding_exercise_06.py).
+
+The program manages a customer profile using a dictionary:
+
+1. Create `customer` with the name `"John Doe"`, age `32`, and city `"New York"`.
+2. Add email and phone entries, then read the customer's name and city.
+3. Check whether `"email"` is a key and delete the `"age"` entry.
+4. Display the keys, values, and key-value pairs.
+5. Remove and print the last inserted pair with `.popitem()`.
+6. Read the missing `"membership"` key with `.get()`.
+7. Add `"address": "221B Baker Street"` with `.update()` and print the final profile.
+
+Key results:
+
+| Operation | Result |
+| --- | --- |
+| `customer["name"]` | `John Doe` |
+| `customer["city"]` | `New York` |
+| `"email" in customer` | `True` |
+| `customer.popitem()` | `('phone', '123-456-7890')` |
+| `customer.get("membership")` | `None` |
+
+The phone entry is removed because it was inserted last. `.get("membership")` returns `None` because the key is missing and no default value was supplied.
+
+The final dictionary contains the name, city, email, and address. The current solution prints it twice:
+
+```text
+{'name': 'John Doe', 'city': 'New York', 'email': 'john.doe@example.com', 'address': '221B Baker Street'}
 ```
 
 ## How to run these examples

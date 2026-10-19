@@ -63,3 +63,7 @@ Coding exercise 05: Managing store inventory
 20. Dictionary in Python
 
 Coding exercise 06: Customer profile management
+
+21. Touch on advance data types like collections
+
+Quiz 2: Data types in Python

@@ -2,7 +2,9 @@
 
 This section introduces Python data types and their behaviour through small examples about tea, weather, temperatures, shopping, store inventory, and customer profiles.
 
-**Status: in progress.** This checkpoint covers chapters 1–10 and six coding exercises. More lessons will be added as I continue the course.
+Chapter 11 also introduces imports, date and time handling, and named tuples.
+
+**Status: in progress.** This checkpoint covers chapters 1–11 and six coding exercises. More lessons will be added as I continue the course.
 
 ## Files covered so far
 
@@ -18,6 +20,7 @@ This section introduces Python data types and their behaviour through small exam
 | [chapter_8.py](chapter_8.py) | List operations, `max()` and `min()`, concatenation, repetition, and `bytearray`. |
 | [chapter_9.py](chapter_9.py) | Set union, intersection, difference, and membership testing. |
 | [chapter_10.py](chapter_10.py) | Dictionaries: creating, accessing, updating, and removing key-value pairs. |
+| [chapter_11.py](chapter_11.py) | Importing packages and modules, UTC and time zones with `arrow`, and named tuples with `collections.namedtuple`. |
 
 ## Coding exercise files
 
@@ -202,6 +205,44 @@ customer_note = chai_order.get("size", "NO Note")
 ```
 
 `.get(key, default)` returns the value when the key exists, or the default when it is missing. Here, `"NO Note"` is used only if `"size"` is missing. The variable name `customer_note` does not change which key is read.
+
+## Chapter 11: imports, time zones, and named tuples
+
+This lesson uses two imports: the external package `arrow` for dates and times, and `namedtuple` from Python's standard-library module `collections`.
+
+Before running this file, install `arrow` using the same Python interpreter that runs your examples:
+
+```powershell
+python -m pip install arrow
+```
+
+If Python reports `ModuleNotFoundError: No module named 'arrow'`, the package is missing from the interpreter running the file. `collections` is included with Python and needs no separate installation.
+
+The first part of the program:
+
+- Uses `import arrow` to make the package available.
+- Calls `arrow.utcnow()` to get the current date and time in UTC and stores it in `brewing_time`.
+- Calls `brewing_time.to("Europe/Rome")` to represent the same instant in Rome's time zone and stores the new object in `rome_time`. The original `brewing_time` remains in UTC.
+- Prints both values with descriptive f-strings. Their dates, times, and Rome's UTC offset depend on when the program runs.
+
+The second part imports `namedtuple` and defines `chaiProfile`, a tuple type with fields named `flavor` and `aroma`:
+
+```python
+chaiProfile = namedtuple("chaiProfile", ["flavor", "aroma"])
+profile = chaiProfile(flavor="spicy", aroma="ginger")
+```
+
+The first line defines the type; the second creates a profile. Read its fields with `profile.flavor` and `profile.aroma`. Like ordinary tuples, named tuples are immutable: their fields cannot be reassigned.
+
+After the two time values, the program prints:
+
+```text
+Chai profile: chaiProfile(flavor='spicy', aroma='ginger')
+Flavor: spicy
+Aroma: ginger
+```
+
+A script needs `print()` calls to display these results in the terminal. Assigning values to variables or defining a named tuple type does not display them automatically.
 
 ## Coding exercise 01: Playing with Numbers
 

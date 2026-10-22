@@ -67,3 +67,12 @@ Coding exercise 06: Customer profile management
 21. Touch on advance data types like collections
 
 Quiz 2: Data types in Python
+
+
+
+Section 03: Conditionals in Python
+
+
+22. Kettle boiling story project
+
+Coding exercise 07: Customer discount eligibility

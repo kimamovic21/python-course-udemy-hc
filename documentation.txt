@@ -84,3 +84,7 @@ Coding exercise 08: Restaurant billing system
 24. Building a chai price calculator
 
 Coding exercise 09: Delivery charge calculator
+
+25. Building smart thermostat system
+
+Coding exercise 10: Loan eligibility checker

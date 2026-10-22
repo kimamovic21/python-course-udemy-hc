@@ -1,8 +1,8 @@
 # 03 — Conditionals
 
-This section introduces conditional logic with `if`, `elif`, `else`, comparisons, and `or`, using tea, snacks, and customer billing examples.
+This section introduces conditional logic with `if`, `elif`, `else`, nested conditions, comparisons, and `or`, using tea, snacks, customer billing, and device-status examples.
 
-**Status: in progress.** This checkpoint covers three mini projects and coding exercises 07–09. More examples will be added as I continue the course.
+**Status: in progress.** This checkpoint covers four mini projects and coding exercises 07–10. More examples will be added as I continue the course.
 
 ## Learning order
 
@@ -14,6 +14,8 @@ This section introduces conditional logic with `if`, `elif`, `else`, comparisons
 4. **Coding exercise 08:** Read [CODING_EXERCISE_08.md](CODING_EXERCISE_08.md), then work through [coding_exercise_08.py](coding_exercise_08.py).
 5. **Mini project 3 — Chai Price Calculator:** Read [CHAI_PRICE_CALCULATOR.md](CHAI_PRICE_CALCULATOR.md), then work through [chai_price_calculator.py](chai_price_calculator.py).
 6. **Coding exercise 09:** Read [CODING_EXERCISE_09.md](CODING_EXERCISE_09.md), then work through [coding_exercise_09.py](coding_exercise_09.py).
+7. **Mini project 4 — Smart Thermostat:** Read [SMART_THERMOSTAT.md](SMART_THERMOSTAT.md), then work through [smart_thermostat.py](smart_thermostat.py).
+8. **Coding exercise 10:** Read [CODING_EXERCISE_10.md](CODING_EXERCISE_10.md), then work through [coding_exercise_10.py](coding_exercise_10.py).
 
 As more mini projects are added, their learning order and explanations will be documented here.
 
@@ -33,6 +35,10 @@ As more mini projects are added, their learning order and explanations will be d
 | [chai_price_calculator.py](chai_price_calculator.py) | An `if`/`elif`/`else` chain selecting a price from the requested cup size. |
 | [CODING_EXERCISE_09.md](CODING_EXERCISE_09.md) | The original Delivery Charge Calculator challenge, maintained manually. |
 | [coding_exercise_09.py](coding_exercise_09.py) | A function returning a delivery charge or an availability message based on distance. |
+| [SMART_THERMOSTAT.md](SMART_THERMOSTAT.md) | The device-status problem, nested-condition explanation, and example results. |
+| [smart_thermostat.py](smart_thermostat.py) | A nested `if` checking temperature only when the device is active. |
+| [CODING_EXERCISE_10.md](CODING_EXERCISE_10.md) | The original Loan Eligibility Checker challenge, maintained manually. |
+| [coding_exercise_10.py](coding_exercise_10.py) | Nested conditions checking the minimum age and income for loan eligibility. |
 
 ## Mini story 1: checking the kettle
 
@@ -154,6 +160,42 @@ calculate_delivery_charge(10.01)  # "Delivery not available for your location."
 
 Automatic tests provide the distance through the function parameter. To display a returned message, a caller can use `print(calculate_delivery_charge(5))`, which prints `Delivery charge: 30`.
 
+## Mini project 4: Smart Thermostat
+
+Read the [problem and solution explanation](SMART_THERMOSTAT.md) and the [Python example](smart_thermostat.py).
+
+The outer `if` checks whether `device_status` is `"active"`. Only then does the inner `if` check whether `temperature > 35`. Higher values produce an alert; values of `35` or less produce the normal-temperature message. Other device statuses produce `Device is offline`.
+
+Each `else` lines up with the `if` it belongs to. With the starting values `"active"` and `38`, the output is:
+
+```text
+High temperature alert!
+```
+
+## Coding exercise 10: Loan Eligibility Checker
+
+Read the [original challenge](CODING_EXERCISE_10.md) and the [Python solution](coding_exercise_10.py).
+
+The function `check_loan_eligibility(age: int, income: float) -> str` checks the customer's age first. If the customer is at least 21, a nested `if` checks whether their income is at least `25_000`.
+
+| Age | Income | Returned string |
+| --- | --- | --- |
+| Less than 21 | Any amount | `Not eligible: Age must be 21 or above` |
+| 21 or above | Less than `25_000` | `Not eligible: Income too low` |
+| 21 or above | `25_000` or above | `Eligible for loan` |
+
+Both checks use `>=`, so an age of exactly 21 and an income of exactly `25_000` qualify. Customers younger than 21 receive the age message before the income check is reached.
+
+Example calls and their returned values:
+
+```python
+check_loan_eligibility(20, 30_000)  # "Not eligible: Age must be 21 or above"
+check_loan_eligibility(21, 24_999)  # "Not eligible: Income too low"
+check_loan_eligibility(21, 25_000)  # "Eligible for loan"
+```
+
+`return` sends the message back to the caller. For example, `print(check_loan_eligibility(21, 25_000))` displays `Eligible for loan`.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open the example you want to run. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -165,9 +207,10 @@ python 03_conditionals/mini_story_1.py
 python 03_conditionals/coding_exercise_07.py
 python 03_conditionals/snak_suggestion.py
 python 03_conditionals/chai_price_calculator.py
+python 03_conditionals/smart_thermostat.py
 ```
 
-For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08 and 09 define functions: use the provided automatic tests or call the functions as described above. Running either function file alone produces no terminal output.
+For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08–10 define functions: use the provided automatic tests or call the functions as described above. Running these function files alone produces no terminal output.
 
 For Chai Price Calculator, enter a cup size when prompted and press **Enter**.
 

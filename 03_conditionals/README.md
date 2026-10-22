@@ -1,8 +1,8 @@
 # 03 — Conditionals
 
-This section introduces `if` statements: running a block of code when a condition is true.
+This section introduces conditional logic with `if`, `else`, comparisons, and `or`, using tea, snacks, and customer billing examples.
 
-**Status: in progress.** This checkpoint covers one mini story and coding exercise 07. More examples will be added as I continue the course.
+**Status: in progress.** This checkpoint covers two mini projects and coding exercises 07–08. More examples will be added as I continue the course.
 
 ## Learning order
 
@@ -10,6 +10,8 @@ This section introduces `if` statements: running a block of code when a conditio
 
 1. **Mini project 1:** Read [MINI_STORY.md](MINI_STORY.md), then work through [mini_story_1.py](mini_story_1.py).
 2. **Coding exercise 07:** Read [CODING_EXERCISE_07.md](CODING_EXERCISE_07.md), then work through [coding_exercise_07.py](coding_exercise_07.py).
+3. **Mini project 2 — Snack Suggestion:** Read [SNAK_SUGESSTION.md](SNAK_SUGESSTION.md), then work through [snak_suggestion.py](snak_suggestion.py).
+4. **Coding exercise 08:** Read [CODING_EXERCISE_08.md](CODING_EXERCISE_08.md), then work through [coding_exercise_08.py](coding_exercise_08.py).
 
 As more mini projects are added, their learning order and explanations will be documented here.
 
@@ -21,6 +23,10 @@ As more mini projects are added, their learning order and explanations will be d
 | [mini_story_1.py](mini_story_1.py) | A boolean variable controlling a printed message with `if`. |
 | [CODING_EXERCISE_07.md](CODING_EXERCISE_07.md) | The original Customer Discount Eligibility challenge, maintained manually. |
 | [coding_exercise_07.py](coding_exercise_07.py) | Two independent `if` statements checking purchase amount and customer age. |
+| [SNAK_SUGESSTION.md](SNAK_SUGESSTION.md) | The Snack Suggestion story, explanation, and example runs. |
+| [snak_suggestion.py](snak_suggestion.py) | User input, lowercase conversion, `or`, and an `if`/`else` decision. |
+| [CODING_EXERCISE_08.md](CODING_EXERCISE_08.md) | The original Restaurant Billing System challenge, maintained manually. |
+| [coding_exercise_08.py](coding_exercise_08.py) | A function returning a dessert offer based on the bill amount. |
 
 ## Mini story 1: checking the kettle
 
@@ -62,6 +68,52 @@ The two `if` statements are evaluated independently. A customer aged 60 or older
 
 `customer_name` stores the name requested by the challenge; it is not used in either condition.
 
+## Mini project 2: Snack Suggestion
+
+Read the [project description](SNAK_SUGESSTION.md) and the [Python example](snak_suggestion.py).
+
+`input()` asks for a preferred snack and waits for the user to type an answer and press **Enter**. `.lower()` converts that answer to lowercase, so `Cookies` and `COOKIES` both become `cookies`.
+
+The condition `snack == "cookies" or snack == "samosa"` is true when either comparison is true. The `if` block confirms an available snack; the `else` block handles other answers. Exactly one block runs.
+
+Example with an available snack:
+
+```text
+Enter your preferred snack: Cookies
+Great Choice! We'll serve you cookies
+```
+
+Example with another snack:
+
+```text
+Enter your preferred snack: chips
+Sorry, we only serve cookies or samosa with tea
+```
+
+## Coding exercise 08: Restaurant Billing System
+
+**Completed: Udemy test passed.**
+
+Read the [original challenge](CODING_EXERCISE_08.md) and the [Python solution](coding_exercise_08.py).
+
+The function `get_delivery_offer(bill_amount: float) -> str` accepts a bill amount and returns a message. Its name and parameter match the automatic test template.
+
+| Bill amount | Returned string |
+| --- | --- |
+| Greater than `500` | `You get a free dessert!` |
+| `500` or less | `No free dessert this time.` |
+
+The condition uses `>`, so a bill of exactly `500` does not qualify. `return` sends the result back to the caller, where the automatic test can check it.
+
+Example calls and their returned values:
+
+```python
+get_delivery_offer(500)     # "No free dessert this time."
+get_delivery_offer(500.01)  # "You get a free dessert!"
+```
+
+Running this file alone produces no terminal output because it defines the function without calling it. A call returns the string; `print(get_delivery_offer(500.01))` would display it.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open the example you want to run. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -71,6 +123,9 @@ Alternatively, run these commands from the repository root:
 ```powershell
 python 03_conditionals/mini_story_1.py
 python 03_conditionals/coding_exercise_07.py
+python 03_conditionals/snak_suggestion.py
 ```
 
-Each file runs independently and uses features included with Python. See the [main README](../README.md#quick-start) for editor setup.
+For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercise 08 is a function-based exercise: use the provided automatic test or call the function as described above.
+
+The examples use features included with Python. See the [main README](../README.md#quick-start) for editor setup.

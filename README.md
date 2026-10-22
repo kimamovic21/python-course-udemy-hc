@@ -13,7 +13,7 @@ My Python learning repository, starting with the basics and adding exercises as 
 | --- | --- |
 | [01_starter](01_starter/README.md) | My first Python program: displaying text with `print()` and exploring The Zen of Python with `import this`. |
 | [02_datatypes](02_datatypes/README.md) | Python data types and collections, dates and time zones, named tuples, and six coding exercises. Section in progress. |
-| [03_conditionals](03_conditionals/README.md) | Basic `if` statements, boolean conditions, and customer discount eligibility checks. Section in progress. |
+| [03_conditionals](03_conditionals/README.md) | Conditional logic with `if`/`else` and `or`, interactive snack suggestions, and discount and dessert eligibility checks. Section in progress. |
 
 Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders will be added to this overview as the course progresses.
 

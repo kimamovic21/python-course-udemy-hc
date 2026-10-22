@@ -76,3 +76,7 @@ Section 03: Conditionals in Python
 22. Kettle boiling story project
 
 Coding exercise 07: Customer discount eligibility
+
+23. Building a snack system
+
+Coding exercise 08: Restaurant billing system

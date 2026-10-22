@@ -1,8 +1,8 @@
 # 03 — Conditionals
 
-This section introduces conditional logic with `if`, `elif`, `else`, nested conditions, comparisons, and `or`, using tea, snacks, customer billing, and device-status examples.
+This section introduces conditional logic with `if`, `elif`, `else`, nested conditions, conditional expressions, comparisons, and `or`, using tea, snacks, customer billing, and device-status examples.
 
-**Status: in progress.** This checkpoint covers four mini projects and coding exercises 07–10. More examples will be added as I continue the course.
+**Status: in progress.** This checkpoint covers five mini projects and coding exercises 07–11. More examples will be added as I continue the course.
 
 ## Learning order
 
@@ -16,6 +16,8 @@ This section introduces conditional logic with `if`, `elif`, `else`, nested cond
 6. **Coding exercise 09:** Read [CODING_EXERCISE_09.md](CODING_EXERCISE_09.md), then work through [coding_exercise_09.py](coding_exercise_09.py).
 7. **Mini project 4 — Smart Thermostat:** Read [SMART_THERMOSTAT.md](SMART_THERMOSTAT.md), then work through [smart_thermostat.py](smart_thermostat.py).
 8. **Coding exercise 10:** Read [CODING_EXERCISE_10.md](CODING_EXERCISE_10.md), then work through [coding_exercise_10.py](coding_exercise_10.py).
+9. **Mini project 5 — Delivery Fees Waiver:** Read [DELIVERY_FEES_WAIVER.md](DELIVERY_FEES_WAIVER.md), then work through [delivery_fees_waiver.py](delivery_fees_waiver.py).
+10. **Coding exercise 11:** Read [CODING_EXERCISE_11.md](CODING_EXERCISE_11.md), then work through [coding_exercise_11.py](coding_exercise_11.py).
 
 As more mini projects are added, their learning order and explanations will be documented here.
 
@@ -39,6 +41,10 @@ As more mini projects are added, their learning order and explanations will be d
 | [smart_thermostat.py](smart_thermostat.py) | A nested `if` checking temperature only when the device is active. |
 | [CODING_EXERCISE_10.md](CODING_EXERCISE_10.md) | The original Loan Eligibility Checker challenge, maintained manually. |
 | [coding_exercise_10.py](coding_exercise_10.py) | Nested conditions checking the minimum age and income for loan eligibility. |
+| [DELIVERY_FEES_WAIVER.md](DELIVERY_FEES_WAIVER.md) | The free-delivery problem, conditional-expression explanation, and example runs. |
+| [delivery_fees_waiver.py](delivery_fees_waiver.py) | Integer input and a conditional expression selecting a delivery fee. |
+| [CODING_EXERCISE_11.md](CODING_EXERCISE_11.md) | The original Age Verification System challenge, maintained manually. |
+| [coding_exercise_11.py](coding_exercise_11.py) | Converting an age string to an integer and returning an access decision with a conditional expression. |
 
 ## Mini story 1: checking the kettle
 
@@ -196,6 +202,34 @@ check_loan_eligibility(21, 25_000)  # "Eligible for loan"
 
 `return` sends the message back to the caller. For example, `print(check_loan_eligibility(21, 25_000))` displays `Eligible for loan`.
 
+## Mini project 5: Delivery Fees Waiver
+
+Read the [problem and solution explanation](DELIVERY_FEES_WAIVER.md) and the [Python example](delivery_fees_waiver.py).
+
+The program reads an order amount and converts it to an integer. The conditional expression `0 if order_amount > 300 else 30` selects the delivery fee, which is then displayed using an f-string.
+
+Orders greater than `300` have a fee of `0`. Orders of exactly `300` or less have a fee of `30`. This example shows how an `if`/`else` decision can be used as an expression that produces a value.
+
+## Coding exercise 11: Age Verification System
+
+**Completed: Udemy test passed.**
+
+Read the [original challenge](CODING_EXERCISE_11.md) and the [Python solution](coding_exercise_11.py).
+
+The function `verify_age(age_str: str) -> str` receives an age as text, such as `"18"`. `int(age_str)` converts it to a whole number before the comparison.
+
+The conditional expression `"Access Granted" if age >= 18 else "Access Denied"` selects the returned message. The `>=` comparison includes exactly 18, so users aged 18 or older receive `Access Granted`.
+
+Example calls and their returned values:
+
+```python
+verify_age("17")  # "Access Denied"
+verify_age("18")  # "Access Granted"
+verify_age("25")  # "Access Granted"
+```
+
+The automatic test supplies `age_str` and checks the returned string. To display the result, a caller can use `print(verify_age("18"))`.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open the example you want to run. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -208,10 +242,13 @@ python 03_conditionals/coding_exercise_07.py
 python 03_conditionals/snak_suggestion.py
 python 03_conditionals/chai_price_calculator.py
 python 03_conditionals/smart_thermostat.py
+python 03_conditionals/delivery_fees_waiver.py
 ```
 
-For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08–10 define functions: use the provided automatic tests or call the functions as described above. Running these function files alone produces no terminal output.
+For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08–11 define functions: use the provided automatic tests or call the functions as described above. Running these function files alone produces no terminal output.
 
 For Chai Price Calculator, enter a cup size when prompted and press **Enter**.
+
+For Delivery Fees Waiver, enter a whole-number order amount when prompted and press **Enter**.
 
 The examples use features included with Python. See the [main README](../README.md#quick-start) for editor setup.

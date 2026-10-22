@@ -88,3 +88,7 @@ Coding exercise 09: Delivery charge calculator
 25. Building smart thermostat system
 
 Coding exercise 10: Loan eligibility checker
+
+26. Delivery fees waiver system
+
+Coding exercise 11: Age verification system

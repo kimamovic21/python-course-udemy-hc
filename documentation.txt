@@ -80,3 +80,7 @@ Coding exercise 07: Customer discount eligibility
 23. Building a snack system
 
 Coding exercise 08: Restaurant billing system
+
+24. Building a chai price calculator
+
+Coding exercise 09: Delivery charge calculator

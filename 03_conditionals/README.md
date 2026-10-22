@@ -1,8 +1,8 @@
 # 03 — Conditionals
 
-This section introduces conditional logic with `if`, `else`, comparisons, and `or`, using tea, snacks, and customer billing examples.
+This section introduces conditional logic with `if`, `elif`, `else`, comparisons, and `or`, using tea, snacks, and customer billing examples.
 
-**Status: in progress.** This checkpoint covers two mini projects and coding exercises 07–08. More examples will be added as I continue the course.
+**Status: in progress.** This checkpoint covers three mini projects and coding exercises 07–09. More examples will be added as I continue the course.
 
 ## Learning order
 
@@ -12,6 +12,8 @@ This section introduces conditional logic with `if`, `else`, comparisons, and `o
 2. **Coding exercise 07:** Read [CODING_EXERCISE_07.md](CODING_EXERCISE_07.md), then work through [coding_exercise_07.py](coding_exercise_07.py).
 3. **Mini project 2 — Snack Suggestion:** Read [SNAK_SUGESSTION.md](SNAK_SUGESSTION.md), then work through [snak_suggestion.py](snak_suggestion.py).
 4. **Coding exercise 08:** Read [CODING_EXERCISE_08.md](CODING_EXERCISE_08.md), then work through [coding_exercise_08.py](coding_exercise_08.py).
+5. **Mini project 3 — Chai Price Calculator:** Read [CHAI_PRICE_CALCULATOR.md](CHAI_PRICE_CALCULATOR.md), then work through [chai_price_calculator.py](chai_price_calculator.py).
+6. **Coding exercise 09:** Read [CODING_EXERCISE_09.md](CODING_EXERCISE_09.md), then work through [coding_exercise_09.py](coding_exercise_09.py).
 
 As more mini projects are added, their learning order and explanations will be documented here.
 
@@ -27,6 +29,10 @@ As more mini projects are added, their learning order and explanations will be d
 | [snak_suggestion.py](snak_suggestion.py) | User input, lowercase conversion, `or`, and an `if`/`else` decision. |
 | [CODING_EXERCISE_08.md](CODING_EXERCISE_08.md) | The original Restaurant Billing System challenge, maintained manually. |
 | [coding_exercise_08.py](coding_exercise_08.py) | A function returning a dessert offer based on the bill amount. |
+| [CHAI_PRICE_CALCULATOR.md](CHAI_PRICE_CALCULATOR.md) | The cup-pricing problem, solution explanation, and example runs. |
+| [chai_price_calculator.py](chai_price_calculator.py) | An `if`/`elif`/`else` chain selecting a price from the requested cup size. |
+| [CODING_EXERCISE_09.md](CODING_EXERCISE_09.md) | The original Delivery Charge Calculator challenge, maintained manually. |
+| [coding_exercise_09.py](coding_exercise_09.py) | A function returning a delivery charge or an availability message based on distance. |
 
 ## Mini story 1: checking the kettle
 
@@ -114,6 +120,40 @@ get_delivery_offer(500.01)  # "You get a free dessert!"
 
 Running this file alone produces no terminal output because it defines the function without calling it. A call returns the string; `print(get_delivery_offer(500.01))` would display it.
 
+## Mini project 3: Chai Price Calculator
+
+Read the [problem and solution explanation](CHAI_PRICE_CALCULATOR.md) and the [Python example](chai_price_calculator.py).
+
+The program reads a cup size and converts it to lowercase. An `if`/`elif`/`else` chain selects a price: `small` costs 10 rupees, `medium` costs 15, and `large` costs 20. Other answers produce `Unknown cup size`.
+
+Conditions are checked in order. Once one matches, its block runs and the remaining branches are skipped, so each run prints one message.
+
+## Coding exercise 09: Delivery Charge Calculator
+
+Read the [original challenge](CODING_EXERCISE_09.md) and the [Python solution](coding_exercise_09.py).
+
+The function `calculate_delivery_charge(distance: float) -> str` receives a distance in kilometres and returns the appropriate message:
+
+| Distance | Returned string |
+| --- | --- |
+| 2 km or less | `Delivery charge: 0` |
+| More than 2 km, up to and including 5 km | `Delivery charge: 30` |
+| More than 5 km, up to and including 10 km | `Delivery charge: 50` |
+| More than 10 km | `Delivery not available for your location.` |
+
+The `if`/`elif`/`else` chain checks the ranges in order. When execution reaches `elif distance <= 5`, the first condition was false, so the distance is already greater than 2. A matching branch uses `return` to send its message back to the caller and end the function.
+
+Example calls and their returned values:
+
+```python
+calculate_delivery_charge(2)      # "Delivery charge: 0"
+calculate_delivery_charge(2.01)   # "Delivery charge: 30"
+calculate_delivery_charge(10)     # "Delivery charge: 50"
+calculate_delivery_charge(10.01)  # "Delivery not available for your location."
+```
+
+Automatic tests provide the distance through the function parameter. To display a returned message, a caller can use `print(calculate_delivery_charge(5))`, which prints `Delivery charge: 30`.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open the example you want to run. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -124,8 +164,11 @@ Alternatively, run these commands from the repository root:
 python 03_conditionals/mini_story_1.py
 python 03_conditionals/coding_exercise_07.py
 python 03_conditionals/snak_suggestion.py
+python 03_conditionals/chai_price_calculator.py
 ```
 
-For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercise 08 is a function-based exercise: use the provided automatic test or call the function as described above.
+For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08 and 09 define functions: use the provided automatic tests or call the functions as described above. Running either function file alone produces no terminal output.
+
+For Chai Price Calculator, enter a cup size when prompted and press **Enter**.
 
 The examples use features included with Python. See the [main README](../README.md#quick-start) for editor setup.

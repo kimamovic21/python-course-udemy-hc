@@ -98,3 +98,16 @@ Coding exercise 11: Age verification system
 Coding exercise 12: Food menu selector
 
 Quiz 03: Conditionals in Python
+
+
+
+Section 04: Loops in Python | Mini projects
+
+
+28. Introduction to loops
+
+29. Tea token dispenser
+
+30. Batch chai preparation
+
+Coding exercise 13: Generate multiplication table

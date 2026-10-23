@@ -1,8 +1,8 @@
 # 03 — Conditionals
 
-This section introduces conditional logic with `if`, `elif`, `else`, nested conditions, conditional expressions, comparisons, and `or`, using tea, snacks, customer billing, and device-status examples.
+This section introduces conditional logic with `if`, `elif`, `else`, `match`/`case`, nested conditions, conditional expressions, comparisons, and `or`, using everyday examples.
 
-**Status: in progress.** This checkpoint covers five mini projects and coding exercises 07–11. More examples will be added as I continue the course.
+**Status: in progress.** This checkpoint covers six mini projects and coding exercises 07–12. More examples will be added as I continue the course.
 
 ## Learning order
 
@@ -18,6 +18,8 @@ This section introduces conditional logic with `if`, `elif`, `else`, nested cond
 8. **Coding exercise 10:** Read [CODING_EXERCISE_10.md](CODING_EXERCISE_10.md), then work through [coding_exercise_10.py](coding_exercise_10.py).
 9. **Mini project 5 — Delivery Fees Waiver:** Read [DELIVERY_FEES_WAIVER.md](DELIVERY_FEES_WAIVER.md), then work through [delivery_fees_waiver.py](delivery_fees_waiver.py).
 10. **Coding exercise 11:** Read [CODING_EXERCISE_11.md](CODING_EXERCISE_11.md), then work through [coding_exercise_11.py](coding_exercise_11.py).
+11. **Mini project 6 — Train Seat:** Read [TRAIN_SEAT.md](TRAIN_SEAT.md), then work through [train_seat.py](train_seat.py).
+12. **Coding exercise 12:** Read [CODING_EXERCISE_12.md](CODING_EXERCISE_12.md), then work through [coding_exercise_12.py](coding_exercise_12.py).
 
 As more mini projects are added, their learning order and explanations will be documented here.
 
@@ -45,6 +47,10 @@ As more mini projects are added, their learning order and explanations will be d
 | [delivery_fees_waiver.py](delivery_fees_waiver.py) | Integer input and a conditional expression selecting a delivery fee. |
 | [CODING_EXERCISE_11.md](CODING_EXERCISE_11.md) | The original Age Verification System challenge, maintained manually. |
 | [coding_exercise_11.py](coding_exercise_11.py) | Converting an age string to an integer and returning an access decision with a conditional expression. |
+| [TRAIN_SEAT.md](TRAIN_SEAT.md) | The train-seat problem, `match`/`case` explanation, and example results. |
+| [train_seat.py](train_seat.py) | Selecting a seat description with string cases and a wildcard fallback. |
+| [CODING_EXERCISE_12.md](CODING_EXERCISE_12.md) | The original Food Menu Selector challenge, maintained manually. |
+| [coding_exercise_12.py](coding_exercise_12.py) | A case-insensitive menu price lookup using `match`/`case` and returned strings. |
 
 ## Mini story 1: checking the kettle
 
@@ -230,6 +236,42 @@ verify_age("25")  # "Access Granted"
 
 The automatic test supplies `age_str` and checks the returned string. To display the result, a caller can use `print(verify_age("18"))`.
 
+## Mini project 6: Train Seat
+
+Read the [problem and solution explanation](TRAIN_SEAT.md) and the [Python example](train_seat.py).
+
+The program reads a seat type and converts it to lowercase. A `match`/`case` statement selects the description for `sleeper`, `ac`, `general`, or `luxury`. The final `case _` handles other answers with `Invalid seat type`.
+
+Only the first matching case runs. For example, entering `AC` matches the lowercase `ac` case and prints `AC - Air conditioned, comfy ride`.
+
+## Coding exercise 12: Food Menu Selector
+
+**Completed: Udemy tests passed.**
+
+Read the [original challenge](CODING_EXERCISE_12.md) and the [Python solution](coding_exercise_12.py).
+
+The function `get_item_price(item: str) -> str` converts the item name to lowercase, then uses `match`/`case` to select a returned message. This makes the lookup case-insensitive: `"BURGER"` and `"burger"` select the same case.
+
+| Item | Returned string |
+| --- | --- |
+| `pizza` | `Price: 30 bucks` |
+| `burger` | `Price: 15 bucks` |
+| `pasta` | `Price: 20 bucks` |
+| `salad` | `Price: 10 bucks` |
+| Any other item | `Item not available` |
+
+The final `case _` handles names that did not match any supported item. Each branch uses `return` to send its message back to the caller.
+
+Example calls and their returned values:
+
+```python
+get_item_price("BURGER")  # "Price: 15 bucks"
+get_item_price("PiZzA")   # "Price: 30 bucks"
+get_item_price("sushi")   # "Item not available"
+```
+
+To display a returned price in the terminal, a caller can use `print(get_item_price("burger"))`.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open the example you want to run. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -243,12 +285,15 @@ python 03_conditionals/snak_suggestion.py
 python 03_conditionals/chai_price_calculator.py
 python 03_conditionals/smart_thermostat.py
 python 03_conditionals/delivery_fees_waiver.py
+python 03_conditionals/train_seat.py
 ```
 
-For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08–11 define functions: use the provided automatic tests or call the functions as described above. Running these function files alone produces no terminal output.
+For Snack Suggestion, type your answer in the terminal when prompted and press **Enter**. Exercises 08–12 define functions: use the provided automatic tests or call the functions as described above. Running these function files alone produces no terminal output.
 
 For Chai Price Calculator, enter a cup size when prompted and press **Enter**.
 
 For Delivery Fees Waiver, enter a whole-number order amount when prompted and press **Enter**.
+
+For Train Seat, enter a seat type when prompted and press **Enter**. Both Train Seat and exercise 12 require Python 3.10 or later for `match`/`case`.
 
 The examples use features included with Python. See the [main README](../README.md#quick-start) for editor setup.

@@ -66,7 +66,7 @@ Coding exercise 06: Customer profile management
 
 21. Touch on advance data types like collections
 
-Quiz 2: Data types in Python
+Quiz 02: Data types in Python
 
 
 
@@ -92,3 +92,9 @@ Coding exercise 10: Loan eligibility checker
 26. Delivery fees waiver system
 
 Coding exercise 11: Age verification system
+
+27. Build a train seat information system
+
+Coding exercise 12: Food menu selector
+
+Quiz 03: Conditionals in Python

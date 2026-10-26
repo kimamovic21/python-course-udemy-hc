@@ -115,3 +115,7 @@ Coding exercise 13: Generate multiplication table
 31. Looping through list - Orders name
 
 Coding exercise 14: Task completion tracker
+
+32. Why to use Enumerate
+
+Coding exercise 15: Numbered task list

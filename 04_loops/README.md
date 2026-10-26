@@ -1,8 +1,8 @@
 # 04 — Loops
 
-This section introduces `for` and `while` loops, number ranges, list iteration, numbering with `enumerate()`, and pairing values with `zip()`. Later examples use `continue`, `break`, and `for`/`else` to control how loops finish.
+This section introduces `for` and `while` loops, number ranges, list iteration, numbering with `enumerate()`, and pairing values with `zip()`. Later examples use `continue`, `break`, and `for`/`else` to control how loops finish. The latest examples introduce the walrus operator (`:=`) and dictionary lookups for customer discounts.
 
-**Status: in progress.** This checkpoint covers eight numbered examples and coding exercises 13–18. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers ten numbered examples and coding exercises 13–18. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -20,6 +20,8 @@ This section introduces `for` and `while` loops, number ranges, list iteration, 
 12. Continue with [07_put_of_order.py](07_put_of_order.py) to skip unavailable items and stop at a discontinued item.
 13. Continue with [08_for_else.py](08_for_else.py) to use a loop's `else` when a search finishes without `break`.
 14. Read the [original challenge 18](CODING_EXERCISE_18.md), then explore [coding_exercise_18.py](coding_exercise_18.py).
+15. Continue with [09_walrus.py](09_walrus.py) to assign and check values with `:=`, then repeat input until an available flavour is chosen.
+16. Continue with [10_dictionary_case.py](10_dictionary_case.py) to look up coupon rules and calculate each customer's next-visit discount.
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -47,6 +49,8 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [08_for_else.py](08_for_else.py) | Finding the first eligible staff member and using `for`/`else` when no match is found. |
 | [CODING_EXERCISE_18.md](CODING_EXERCISE_18.md) | The original Parcel Scanning System challenge, maintained manually. |
 | [coding_exercise_18.py](coding_exercise_18.py) | A function combining `continue`, `break`, and `for`/`else` to return parcel scan messages. |
+| [09_walrus.py](09_walrus.py) | Assigning values within conditions using `:=` and asking for an available chai flavour with `while`. |
+| [10_dictionary_case.py](10_dictionary_case.py) | Looking up coupon rules with `.get()`, unpacking tuples, and calculating discounts for a list of customers. |
 
 ## Example 01: Token Dispenser
 
@@ -367,6 +371,77 @@ For `scan_parcels(["P001", "STOP", "P002"])`, scanning stops before `P002` and t
 
 The function leaves the original parcel list unchanged. An empty list returns `["All parcels scanned successfully"]` because the loop finishes without a break.
 
+## Example 09: Walrus Operator
+
+Read [09_walrus.py](09_walrus.py). The walrus operator, `:=`, assigns a value to a variable and makes that value available in the surrounding expression.
+
+```python
+value = 13
+
+if remainder := value % 5:
+    print(f"Not divisible, remainder is {remainder}")
+```
+
+`13 % 5` gives the remainder `3`. The condition stores it in `remainder`, then checks its truth value. A nonzero number is truthy, so the message is printed. A remainder of `0` is falsy and would skip this block.
+
+The second active example offers `masala`, `ginger`, `lemon`, and `mint`, then validates the user's choice:
+
+```python
+while (flavor := input("Choose your flavor: ")) not in flavors:
+    print(f"Sorry, {flavor} is not available")
+
+print(f"You choose {flavor} chai")
+```
+
+Each condition check reads input and saves it in `flavor`. An unavailable choice runs the loop body and prompts again. An available choice ends the loop, and the final message uses the saved value. The input must match a listed flavour exactly, including lowercase letters.
+
+Example terminal session, entering `vanilla` and then `ginger`:
+
+```text
+Not divisible, remainder is 3
+Available flavors:  ['masala', 'ginger', 'lemon', 'mint']
+Choose your flavor: vanilla
+Sorry, vanilla is not available
+Choose your flavor: ginger
+You choose ginger chai
+```
+
+The file also contains commented examples of separate assignment and a cup-size check. Lines starting with `#` do not run.
+
+## Example 10: Dictionary-Based Discounts
+
+Read [10_dictionary_case.py](10_dictionary_case.py). `users` is a list of dictionaries, each holding a customer's `id`, purchase `total`, and `coupon` code. `discounts` maps each coupon code to a tuple containing `(percent, fixed)`.
+
+The loop processes one customer at a time:
+
+```python
+for user in users:
+    percent, fixed = discounts.get(user["coupon"], (0, 0))
+    discount = user["total"] * percent + fixed
+```
+
+`user["coupon"]` reads the current customer's coupon code. `.get()` finds its rule, and tuple unpacking assigns the two values to `percent` and `fixed`. If the coupon is missing from `discounts`, `.get()` returns the default `(0, 0)`, giving no discount.
+
+With the current values:
+
+| User | Total | Coupon | Rule `(percent, fixed)` | Discount calculation |
+| --- | --- | --- | --- | --- |
+| `1` | `100` | `P20` | `(0.2, 0)` | `100 * 0.2 + 0 = 20.0` |
+| `2` | `150` | `F10` | `(0.5, 0)` | `150 * 0.5 + 0 = 75.0` |
+| `3` | `80` | `P50` | `(0, 10)` | `80 * 0 + 10 = 10` |
+
+Coupon names are labels; their tuple values determine the actual discount. In this example, `F10` gives 50% and `P50` gives a fixed 10 rupees.
+
+Expected output:
+
+```text
+User 1 paid total 100 and got discount for next visit of rupees 20.0
+User 2 paid total 150 and got discount for next visit of rupees 75.0
+User 3 paid total 80 and got discount for next visit of rupees 10
+```
+
+The discount is reported for the next visit. The code does not subtract it from the current purchase total or change the customer dictionaries.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -382,7 +457,11 @@ python 04_loops/05_order_summary.py
 python 04_loops/06_tea-temperature.py
 python 04_loops/07_put_of_order.py
 python 04_loops/08_for_else.py
+python 04_loops/09_walrus.py
+python 04_loops/10_dictionary_case.py
 ```
+
+`09_walrus.py` waits for terminal input. Enter an available lowercase flavour, such as `ginger`, to finish the script.
 
 Exercises 13–18 define functions for automatic testing. The tests supply the function arguments and check the returned lists. Running these files alone defines the functions without displaying a result. After loading a function, a caller can use `print(scan_parcels(["P001", "DAMAGED", "P002"]))` to display its result.
 

@@ -131,3 +131,9 @@ Coding exercise 17: ATM withdrawal simulator
 35. Break, continue and loop fallback
 
 Coding exercise 18: Parcel scanning system
+
+36. Walrus operator is interesting in Python
+
+37. Dictionary in place of match case
+
+Quiz 04: Loops in Python

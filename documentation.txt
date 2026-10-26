@@ -111,3 +111,7 @@ Section 04: Loops in Python | Mini projects
 30. Batch chai preparation
 
 Coding exercise 13: Generate multiplication table
+
+31. Looping through list - Orders name
+
+Coding exercise 14: Task completion tracker

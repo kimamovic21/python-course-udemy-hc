@@ -1,8 +1,8 @@
 # 04 — Loops
 
-This section introduces `for` and `while` loops, number ranges, list iteration, numbering with `enumerate()`, and pairing values with `zip()` through chai examples and practical exercises.
+This section introduces `for` and `while` loops, number ranges, list iteration, numbering with `enumerate()`, and pairing values with `zip()`. Later examples use `continue`, `break`, and `for`/`else` to control how loops finish.
 
-**Status: in progress.** This checkpoint covers six numbered examples and coding exercises 13–17. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers eight numbered examples and coding exercises 13–18. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -17,6 +17,9 @@ This section introduces `for` and `while` loops, number ranges, list iteration, 
 9. Read the [original challenge 16](CODING_EXERCISE_16.md), then explore [coding_exercise_16.py](coding_exercise_16.py).
 10. Continue with [06_tea-temperature.py](06_tea-temperature.py) to repeat a temperature check using `while`.
 11. Read the [original challenge 17](CODING_EXERCISE_17.md), then explore [coding_exercise_17.py](coding_exercise_17.py).
+12. Continue with [07_put_of_order.py](07_put_of_order.py) to skip unavailable items and stop at a discontinued item.
+13. Continue with [08_for_else.py](08_for_else.py) to use a loop's `else` when a search finishes without `break`.
+14. Read the [original challenge 18](CODING_EXERCISE_18.md), then explore [coding_exercise_18.py](coding_exercise_18.py).
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -40,6 +43,10 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [06_tea-temperature.py](06_tea-temperature.py) | Repeating temperature messages with `while` and updating the temperature using `+=`. |
 | [CODING_EXERCISE_17.md](CODING_EXERCISE_17.md) | The original ATM Withdrawal Simulator challenge, maintained manually. |
 | [coding_exercise_17.py](coding_exercise_17.py) | A function processing withdrawal requests with `while` and returning messages plus the final balance. |
+| [07_put_of_order.py](07_put_of_order.py) | Skipping an out-of-stock flavour with `continue` and stopping at a discontinued flavour with `break`. |
+| [08_for_else.py](08_for_else.py) | Finding the first eligible staff member and using `for`/`else` when no match is found. |
+| [CODING_EXERCISE_18.md](CODING_EXERCISE_18.md) | The original Parcel Scanning System challenge, maintained manually. |
+| [coding_exercise_18.py](coding_exercise_18.py) | A function combining `continue`, `break`, and `for`/`else` to return parcel scan messages. |
 
 ## Example 01: Token Dispenser
 
@@ -292,6 +299,74 @@ After the first withdrawal, `60` remains. The request for `80` is rejected, so t
 
 The original withdrawal list stays unchanged. An empty list returns just the final-balance message, for example `["Remaining Balance: 500"]` when the starting balance is `500`.
 
+## Example 07: Stock Availability
+
+Read [07_put_of_order.py](07_put_of_order.py). The loop visits the flavours in order and handles two special values:
+
+- `"Out of Stock"` triggers `continue`, which skips the rest of that iteration and moves to the next flavour.
+- `"Discontinued"` prints a message and triggers `break`, which ends the loop immediately.
+
+With the starting list, `Ginger` and `Lemon` are printed. The discontinued item is printed before the break, and `Tulsi` is never reached. The final statement outside the loop still runs.
+
+Expected output:
+
+```text
+Ginger item found
+Lemon item found
+Discontinued item found
+Out side of loop
+```
+
+## Example 08: For-Else Search
+
+Read [08_for_else.py](08_for_else.py). Each entry in `staff` is a tuple containing a name and an age. `for name, age in staff` unpacks each pair, then checks whether `age >= 18`.
+
+When the loop finds an eligible person, it prints their name and uses `break` to end the search. With the starting values, Amit is 26, so the output is:
+
+```text
+Amit is eligible to manage the staff.
+```
+
+The `else` lines up with `for` and belongs to the loop. It runs when iteration finishes without `break`. If every person is younger than 18, the output is `No one eligible to manage the staff.` An empty staff list also reaches this `else`.
+
+## Coding exercise 18: Parcel Scanning System
+
+**Completed: Udemy tests passed.**
+
+Read the [original challenge](CODING_EXERCISE_18.md) and the [Python solution](coding_exercise_18.py).
+
+The function `scan_parcels(parcel_codes: list[str]) -> list[str]` builds a new list of scan messages:
+
+| Barcode | Action | Message |
+| --- | --- | --- |
+| `"DAMAGED"` | Log the issue, then skip this parcel with `continue`. | `Skipped damaged parcel` |
+| `"STOP"` | Log the error, then end the loop with `break`. | `Critical error: Stopping scan` |
+| Any other barcode | Log the scanned parcel. | `Scanned parcel: <barcode>` |
+
+If the loop finishes without `break`, its `else` appends `All parcels scanned successfully`. Skipping damaged parcels with `continue` still allows this final message when iteration reaches the end.
+
+For `scan_parcels(["P001", "DAMAGED", "P002"])`, the returned value is:
+
+```python
+[
+    "Scanned parcel: P001",
+    "Skipped damaged parcel",
+    "Scanned parcel: P002",
+    "All parcels scanned successfully",
+]
+```
+
+For `scan_parcels(["P001", "STOP", "P002"])`, scanning stops before `P002` and the returned value is:
+
+```python
+[
+    "Scanned parcel: P001",
+    "Critical error: Stopping scan",
+]
+```
+
+The function leaves the original parcel list unchanged. An empty list returns `["All parcels scanned successfully"]` because the loop finishes without a break.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -305,8 +380,10 @@ python 04_loops/03_tea_orders.py
 python 04_loops/04_tea_menu.py
 python 04_loops/05_order_summary.py
 python 04_loops/06_tea-temperature.py
+python 04_loops/07_put_of_order.py
+python 04_loops/08_for_else.py
 ```
 
-Exercises 13–17 define functions for automatic testing. The tests supply the function arguments and check the returned lists. Running these files alone defines the functions without displaying a result. After loading a function, a caller can use `print(simulate_atm_withdrawals(100, [40, 80, 20]))` to display its result.
+Exercises 13–18 define functions for automatic testing. The tests supply the function arguments and check the returned lists. Running these files alone defines the functions without displaying a result. After loading a function, a caller can use `print(scan_parcels(["P001", "DAMAGED", "P002"]))` to display its result.
 
 See the [main README](../README.md#quick-start) for editor setup. These examples use features included with Python.

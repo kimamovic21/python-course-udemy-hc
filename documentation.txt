@@ -127,3 +127,7 @@ Coding exercise 16: Student scores report
 34. Introducing while loop in Python
 
 Coding exercise 17: ATM withdrawal simulator
+
+35. Break, continue and loop fallback
+
+Coding exercise 18: Parcel scanning system

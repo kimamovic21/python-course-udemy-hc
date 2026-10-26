@@ -119,3 +119,7 @@ Coding exercise 14: Task completion tracker
 32. Why to use Enumerate
 
 Coding exercise 15: Numbered task list
+
+33. Zip can combine lists
+
+Coding exercise 16: Student scores report

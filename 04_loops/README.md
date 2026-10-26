@@ -1,8 +1,8 @@
 # 04 — Loops
 
-This section introduces `for` loops over number ranges and lists, numbering with `enumerate()`, and pairing values with `zip()` through chai examples and exercises that build lists.
+This section introduces `for` and `while` loops, number ranges, list iteration, numbering with `enumerate()`, and pairing values with `zip()` through chai examples and practical exercises.
 
-**Status: in progress.** This checkpoint covers five numbered examples and coding exercises 13–16. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers six numbered examples and coding exercises 13–17. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -15,6 +15,8 @@ This section introduces `for` loops over number ranges and lists, numbering with
 7. Read the [original challenge 15](CODING_EXERCISE_15.md), then explore [coding_exercise_15.py](coding_exercise_15.py).
 8. Continue with [05_order_summary.py](05_order_summary.py) to pair customer names with their bills using `zip()`.
 9. Read the [original challenge 16](CODING_EXERCISE_16.md), then explore [coding_exercise_16.py](coding_exercise_16.py).
+10. Continue with [06_tea-temperature.py](06_tea-temperature.py) to repeat a temperature check using `while`.
+11. Read the [original challenge 17](CODING_EXERCISE_17.md), then explore [coding_exercise_17.py](coding_exercise_17.py).
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -35,6 +37,9 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [05_order_summary.py](05_order_summary.py) | Pairing customer names and bill amounts with `zip()` and printing payment summaries. |
 | [CODING_EXERCISE_16.md](CODING_EXERCISE_16.md) | The original Student Scores Report challenge, maintained manually. |
 | [coding_exercise_16.py](coding_exercise_16.py) | A function pairing student names and scores into a new list of report strings. |
+| [06_tea-temperature.py](06_tea-temperature.py) | Repeating temperature messages with `while` and updating the temperature using `+=`. |
+| [CODING_EXERCISE_17.md](CODING_EXERCISE_17.md) | The original ATM Withdrawal Simulator challenge, maintained manually. |
+| [coding_exercise_17.py](coding_exercise_17.py) | A function processing withdrawal requests with `while` and returning messages plus the final balance. |
 
 ## Example 01: Token Dispenser
 
@@ -232,6 +237,61 @@ For `generate_score_report(["Alice", "Bob", "John Doe"], [95, 0, 100])`, the ret
 
 The original names and scores remain unchanged. The report follows their paired order, and `return report` runs after the loop. An empty input produces no pairs and returns an empty list; lists of different lengths produce entries only for the available pairs.
 
+## Example 06: Tea Temperature
+
+```python
+temperature = 40
+
+while temperature < 100:
+    print(f"Current temperature: {temperature}")
+    temperature += 15
+
+print("Tea is ready to boil")
+```
+
+`while` checks its condition before each iteration. The loop starts at `40`, prints the current value, and increases it by `15`. `temperature += 15` means the same as `temperature = temperature + 15`.
+
+The values printed inside the loop are `40`, `55`, `70`, and `85`. After the last increase, the temperature becomes `100`, so `temperature < 100` is false and the loop ends. The final `print()` is outside the loop and runs once.
+
+Expected output:
+
+```text
+Current temperature: 40
+Current temperature: 55
+Current temperature: 70
+Current temperature: 85
+Tea is ready to boil
+```
+
+## Coding exercise 17: ATM Withdrawal Simulator
+
+**Completed: Udemy test passed.**
+
+Read the [original challenge](CODING_EXERCISE_17.md) and the [Python solution](coding_exercise_17.py).
+
+The function `simulate_atm_withdrawals(balance: int, withdrawals: list[int]) -> list[str]` processes requests in order and returns a list of messages:
+
+1. Start with an empty `messages` list and `index = 0`.
+2. While `index < len(withdrawals)`, read the amount at `withdrawals[index]`.
+3. If `balance >= amount`, subtract it and append `Withdrawn: {amount}`. Otherwise, append `Insufficient funds for requested amount: {amount}` and keep the current balance.
+4. Increase `index` after either outcome so the next request is processed.
+5. After the loop, append `Remaining Balance: {balance}` once and return the messages.
+
+For `simulate_atm_withdrawals(100, [40, 80, 20])`, the returned value is:
+
+```python
+[
+    "Withdrawn: 40",
+    "Insufficient funds for requested amount: 80",
+    "Withdrawn: 20",
+    "Remaining Balance: 40",
+]
+```
+
+After the first withdrawal, `60` remains. The request for `80` is rejected, so the next request for `20` can still succeed. A request equal to the current balance also succeeds because the condition uses `>=`.
+
+The original withdrawal list stays unchanged. An empty list returns just the final-balance message, for example `["Remaining Balance: 500"]` when the starting balance is `500`.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -244,8 +304,9 @@ python 04_loops/02_batch_chai.py
 python 04_loops/03_tea_orders.py
 python 04_loops/04_tea_menu.py
 python 04_loops/05_order_summary.py
+python 04_loops/06_tea-temperature.py
 ```
 
-Exercises 13–16 define functions for automatic testing. The tests supply the function arguments and check the returned lists. Running these files alone defines the functions without displaying a result. After loading a function, a caller can use `print(generate_score_report(["Alice", "Bob"], [95, 80]))` to display its result.
+Exercises 13–17 define functions for automatic testing. The tests supply the function arguments and check the returned lists. Running these files alone defines the functions without displaying a result. After loading a function, a caller can use `print(simulate_atm_withdrawals(100, [40, 80, 20]))` to display its result.
 
 See the [main README](../README.md#quick-start) for editor setup. These examples use features included with Python.

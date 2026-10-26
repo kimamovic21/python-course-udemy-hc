@@ -123,3 +123,7 @@ Coding exercise 15: Numbered task list
 33. Zip can combine lists
 
 Coding exercise 16: Student scores report
+
+34. Introducing while loop in Python
+
+Coding exercise 17: ATM withdrawal simulator

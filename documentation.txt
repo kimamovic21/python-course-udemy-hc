@@ -137,3 +137,14 @@ Coding exercise 18: Parcel scanning system
 37. Dictionary in place of match case
 
 Quiz 04: Loops in Python
+
+
+
+Section 05: Functions in Python
+
+
+38. Functions - reducing duplication and splitting complex tasks
+
+39. Functions - 3 more features
+
+Coding exercise 19: Student grading system

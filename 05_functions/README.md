@@ -1,8 +1,8 @@
 # 05 — Functions
 
-This section introduces functions: named blocks of code that run when called. The examples cover parameters, code reuse, workflows built from smaller functions, and returned values used in bill and VAT calculations. Exercise 19 combines functions and conditions to generate student grade reports.
+This section introduces functions: named blocks of code that run when called. The examples cover parameters, code reuse, workflows built from smaller functions, and returned values used in bill and VAT calculations. Later examples explore local, enclosing, and global variable scope. Exercises 19–20 apply these ideas to student grade reports and loyalty points.
 
-**Status: in progress.** This checkpoint covers five numbered examples and coding exercise 19. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers eight numbered examples and coding exercises 19–20. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -12,6 +12,10 @@ This section introduces functions: named blocks of code that run when called. Th
 4. Continue with [04_readability.py](04_readability.py) to return a calculated bill and use the result in different ways.
 5. Continue with [05_trace.py](05_trace.py) to reuse a VAT calculation in a loop and inspect each result.
 6. Read the [original challenge 19](CODING_EXERCISE_19.md), then explore [coding_exercise_19.py](coding_exercise_19.py) to calculate a grade and return a student report.
+7. Continue with [06_scopes.py](06_scopes.py) to compare local, enclosing, and global variables with the same name.
+8. Continue with [07_nonlocal.py](07_nonlocal.py) to update a variable belonging to an enclosing function.
+9. Continue with [08_global_scope.py](08_global_scope.py) to update a module-level variable from a nested function.
+10. Read the [original challenge 20](CODING_EXERCISE_20.md), then explore [coding_exercise_20.py](coding_exercise_20.py) to apply a bonus and accumulate loyalty points.
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -26,6 +30,11 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [05_trace.py](05_trace.py) | Returning a price including VAT and printing the original and final amounts for each order. |
 | [CODING_EXERCISE_19.md](CODING_EXERCISE_19.md) | The original student grading challenge, maintained manually. |
 | [coding_exercise_19.py](coding_exercise_19.py) | Reusing `calculate_grade(score)` inside `generate_student_report(name, score)` to return a formatted report. |
+| [06_scopes.py](06_scopes.py) | Showing how separate local, enclosing, and global variables can share a name. |
+| [07_nonlocal.py](07_nonlocal.py) | Updating an enclosing function's `chai_type` with `nonlocal`. |
+| [08_global_scope.py](08_global_scope.py) | Updating the module-level `chai_type` with `global` inside a nested function. |
+| [CODING_EXERCISE_20.md](CODING_EXERCISE_20.md) | The original Loyalty Points Tracker challenge, maintained manually. |
+| [coding_exercise_20.py](coding_exercise_20.py) | Combining local totals, a nested bonus function, and global loyalty points. |
 
 ## Example 01: Reusing an Order Function
 
@@ -178,6 +187,8 @@ The results are floats because the formula uses `/` division.
 
 ## Coding exercise 19: Student Grading System
 
+**Completed: Udemy tests passed.**
+
 Read the [original challenge](CODING_EXERCISE_19.md) and the [Python solution](coding_exercise_19.py).
 
 `calculate_grade(score)` checks score thresholds from highest to lowest and returns the matching letter:
@@ -208,6 +219,85 @@ Aman has scored 80 and received grade B
 
 The functions return their results; the example caller uses `print()` to display the report. The wording and spacing of the returned string match the challenge's required format.
 
+## Example 06: Variable Scope
+
+Read [06_scopes.py](06_scopes.py). **Scope** describes where a variable name is available. Variables with the same name can belong to different scopes:
+
+- In `serve_chai()`, the local `chai_type` is `"Masala"`. The module-level `chai_type` is `"Lemon"`, so the two messages use different values.
+- In `chai_counter()`, `chai_order` is `"lemon"`. This is the enclosing scope for the nested `print_order()` function.
+- `print_order()` assigns its own local `chai_order = "Ginger"`. That assignment leaves the enclosing value unchanged.
+- The module-level `chai_order` is `"Tulsi"` and keeps its value after `chai_counter()` finishes.
+
+Expected output:
+
+```text
+Inside function Masala
+Outside function: Lemon
+Inner: Ginger
+Outer:  lemon
+Global : Tulsi
+```
+
+## Example 07: Updating an Enclosing Variable
+
+Read [07_nonlocal.py](07_nonlocal.py). The global `chai_type` starts as `"ginger"`, while `update_order()` defines a separate local `chai_type = "Elaichi"`.
+
+Inside the nested `kitchen()` function, `nonlocal chai_type` selects the variable belonging to `update_order()`. Assigning `"Kesar"` updates that enclosing variable. After `kitchen()` returns, `update_order()` prints its new value:
+
+```text
+After kitchen update Kesar
+```
+
+The global `chai_type` remains `"ginger"`. `nonlocal` refers to a binding in an enclosing function scope.
+
+## Example 08: Updating a Global Variable
+
+Read [08_global_scope.py](08_global_scope.py). The module-level `chai_type` starts as `"Plain"`. Calling `front_desk()` calls its nested `kitchen()` function.
+
+`global chai_type` inside `kitchen()` selects the module-level variable, so assigning `"Irani"` changes the value used by the final `print()` outside the functions.
+
+Expected output:
+
+```text
+Final global chai:  Irani
+```
+
+## Coding exercise 20: Loyalty Points Tracker
+
+**Completed: Udemy tests passed.**
+
+Read the [original challenge](CODING_EXERCISE_20.md) and the [Python solution](coding_exercise_20.py).
+
+`process_transactions(transactions: list[int]) -> int` receives one customer's transaction amounts and returns their final total:
+
+1. `loyalty_points = 0` is defined at module level. `global loyalty_points` lets the function update that shared count.
+2. `total = sum(transactions)` creates the local total for this customer.
+3. The nested `apply_bonus()` uses `nonlocal total` to update that total. When it is strictly greater than `1000`, the function adds `50`. A total of exactly `1000` receives no bonus.
+4. Calling `apply_bonus()` applies the rule before calculating points. `total // 100` awards one point per full 100 of the final amount, and `+=` adds those points to the global count.
+5. `return total` returns the amount including any bonus. The accumulated points remain available in `loyalty_points`.
+
+For `[400, 700]`, the sum is `1100`, the bonus makes it `1150`, and `1150 // 100` earns `11` points.
+
+Starting with a fresh `loyalty_points` count of `0`, this example after loading the functions:
+
+```python
+print(process_transactions([400, 700]))
+print(loyalty_points)
+print(process_transactions([200, 300]))
+print(loyalty_points)
+```
+
+displays:
+
+```text
+1150
+11
+500
+16
+```
+
+The second customer earns another `5` points, giving `11 + 5 = 16`. The local `total` is calculated separately for each call, while the global points accumulate across calls during the same program run. An empty transaction list returns `0` and leaves the point count unchanged.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -220,10 +310,13 @@ python 05_functions/02_complex.py
 python 05_functions/03_hiding.py
 python 05_functions/04_readability.py
 python 05_functions/05_trace.py
+python 05_functions/06_scopes.py
+python 05_functions/07_nonlocal.py
+python 05_functions/08_global_scope.py
 ```
 
-All five scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
+All eight numbered scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
 
-`coding_exercise_19.py` defines functions for automatic testing. Running that file alone defines the functions without displaying a result. The caller supplies the arguments and uses the returned grade or report, as shown in the exercise example above.
+Exercises 19–20 define functions for automatic testing. Running these files alone does not display a result. The caller supplies the arguments and uses the returned values, as shown in the exercise examples above. Exercise 20 also updates the global `loyalty_points` count.
 
 See the [main README](../README.md#quick-start) for editor setup.

@@ -148,3 +148,9 @@ Section 05: Functions in Python
 39. Functions - 3 more features
 
 Coding exercise 19: Student grading system
+
+40. Scope and named space in functions
+
+41. Non local vs global scopes
+
+Coding exercise 20: Loyalty points tracker

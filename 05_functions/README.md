@@ -1,8 +1,8 @@
 # 05 — Functions
 
-This section introduces functions: named blocks of code that run when called. The examples cover parameters, code reuse, workflows built from smaller functions, and returned values used in bill and VAT calculations. Later examples explore local, enclosing, and global variable scope. Exercises 19–20 apply these ideas to student grade reports and loyalty points.
+This section introduces functions, parameters, return values, code reuse, and variable scope. The examples progress from chai orders and small workflows to `nonlocal`/`global`, positional and keyword arguments, and collecting extra arguments with `*args`/`**kwargs`. Exercises 19–21 apply these ideas to student grade reports, loyalty points, and invoices.
 
-**Status: in progress.** This checkpoint covers eight numbered examples and coding exercises 19–20. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers nine numbered examples and coding exercises 19–21. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -16,6 +16,8 @@ This section introduces functions: named blocks of code that run when called. Th
 8. Continue with [07_nonlocal.py](07_nonlocal.py) to update a variable belonging to an enclosing function.
 9. Continue with [08_global_scope.py](08_global_scope.py) to update a module-level variable from a nested function.
 10. Read the [original challenge 20](CODING_EXERCISE_20.md), then explore [coding_exercise_20.py](coding_exercise_20.py) to apply a bonus and accumulate loyalty points.
+11. Continue with [09_input_params.py](09_input_params.py) to explore list mutation, positional and keyword arguments, extra arguments, and a `None` default.
+12. Read the [original challenge 21](CODING_EXERCISE_21.md), then explore [coding_exercise_21.py](coding_exercise_21.py) to return an invoice with optional items and charges.
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -35,6 +37,9 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [08_global_scope.py](08_global_scope.py) | Updating the module-level `chai_type` with `global` inside a nested function. |
 | [CODING_EXERCISE_20.md](CODING_EXERCISE_20.md) | The original Loyalty Points Tracker challenge, maintained manually. |
 | [coding_exercise_20.py](coding_exercise_20.py) | Combining local totals, a nested bonus function, and global loyalty points. |
+| [09_input_params.py](09_input_params.py) | Passing a mutable list, using positional and keyword arguments, collecting extra arguments, and creating a list from a `None` default. |
+| [CODING_EXERCISE_21.md](CODING_EXERCISE_21.md) | The original Order Invoice Generator challenge, maintained manually. |
+| [coding_exercise_21.py](coding_exercise_21.py) | Returning an invoice with a default customer name, variable items, and named charges. |
 
 ## Example 01: Reusing an Order Function
 
@@ -298,6 +303,89 @@ displays:
 
 The second customer earns another `5` points, giving `11 + 5 = 16`. The local `total` is calculated separately for each call, while the global points accumulate across calls during the same program run. An empty transaction list returns `0` and leaves the point count unchanged.
 
+## Example 09: Input Parameters and Arguments
+
+Read [09_input_params.py](09_input_params.py). The active code demonstrates several ways to pass and use arguments:
+
+- **Mutable list:** `edit_chai(chai)` makes the parameter `cup` refer to the same list as `chai`. `cup[1] = 42` changes its second element, so the caller sees `[1, 42, 3]`.
+- **Positional arguments:** `make_chai("Darjeeling", "Yes", "Low")` assigns values to `tea`, `milk`, and `sugar` in that order.
+- **Keyword arguments:** `make_chai(tea="Green", sugar="Medium", milk="No")` matches arguments by name. The function still prints its parameters in the order `tea`, `milk`, `sugar`.
+- **Extra positional arguments:** `*ingredients` collects `"Cinnamon"` and `"Cardamom"` into a tuple.
+- **Extra keyword arguments:** `**extras` collects `sweetener="Honey"` and `foam="yes"` into a dictionary. The names `ingredients` and `extras` are chosen by the programmer; the common names `*args` and `**kwargs` work the same way.
+- **Default argument:** `chai_order(order=None)` creates a fresh empty list when called without an argument. Each of the two calls prints `[]`.
+
+Using `None` avoids sharing a mutable default list between calls. In the commented version with `order=[]`, the default list is created once when the function is defined, so repeated `.append("Masala")` calls would accumulate items in that same list. The active version creates a list inside the function and only prints it.
+
+Lines starting with `#`, including the earlier string example and the mutable-default example, are comments and do not run.
+
+Expected output:
+
+```text
+[1, 42, 3]
+Darjeeling Yes Low
+Green No Medium
+Ingredients ('Cinnamon', 'Cardamom')
+Extras {'sweetener': 'Honey', 'foam': 'yes'}
+[]
+[]
+```
+
+## Coding exercise 21: Order Invoice Generator
+
+**Completed: Udemy tests passed.**
+
+Read the [original challenge](CODING_EXERCISE_21.md) and the [Python solution](coding_exercise_21.py).
+
+`generate_invoice()` returns one invoice string using three kinds of input:
+
+| Parameter | Purpose |
+| --- | --- |
+| `customer_name: str = "Guest"` | The customer name, defaulting to `"Guest"` when omitted. |
+| `*items: str` | Any number of food-item names, collected in a tuple. |
+| `**charges: float` | Named extra charges, collected in a dictionary. |
+
+The `-> str` annotation describes the returned value. The function builds the invoice in these steps:
+
+1. Start a `lines` list with `Invoice for <customer_name>:`.
+2. If items are present, append `Items:` and a separate `- <item>` line for each item.
+3. If charges are present, append `Charges:` and iterate through `charges.items()`. `.capitalize()` turns a name such as `tax` into `Tax`.
+4. Calculate `sum(charges.values(), 0.0)`, then append the total line. Only charge amounts contribute to the total; food items are listed by name.
+5. Return `"\n".join(lines)` to combine the list into one string with a newline between its entries.
+
+After loading the function, this call:
+
+```python
+print(generate_invoice("Amit", "Burger", "Fries", tax=50.0, service=20.0))
+```
+
+displays:
+
+```text
+Invoice for Amit:
+Items:
+- Burger
+- Fries
+Charges:
+Tax: 50.0
+Service: 20.0
+Total Amount Due: 70.0
+```
+
+Calling the function without arguments:
+
+```python
+print(generate_invoice())
+```
+
+displays:
+
+```text
+Invoice for Guest:
+Total Amount Due: 0.0
+```
+
+Empty item and charge sections are omitted. The starting value `0.0` in `sum()` keeps the total at `0.0` when there are no charges. The function returns the text; the example caller uses `print()` to display it.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -313,10 +401,11 @@ python 05_functions/05_trace.py
 python 05_functions/06_scopes.py
 python 05_functions/07_nonlocal.py
 python 05_functions/08_global_scope.py
+python 05_functions/09_input_params.py
 ```
 
-All eight numbered scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
+All nine numbered scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
 
-Exercises 19–20 define functions for automatic testing. Running these files alone does not display a result. The caller supplies the arguments and uses the returned values, as shown in the exercise examples above. Exercise 20 also updates the global `loyalty_points` count.
+Exercises 19–21 define functions for automatic testing. Running these files alone does not display a result. The caller supplies the arguments and uses the returned values, as shown in the exercise examples above. Exercise 20 also updates the global `loyalty_points` count.
 
 See the [main README](../README.md#quick-start) for editor setup.

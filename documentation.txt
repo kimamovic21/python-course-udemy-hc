@@ -154,3 +154,7 @@ Coding exercise 19: Student grading system
 41. Non local vs global scopes
 
 Coding exercise 20: Loyalty points tracker
+
+42. Handling arguments in function in Python
+
+Coding exercise 21: Order invoice in Python

@@ -15,7 +15,7 @@ My Python learning repository, starting with the basics and adding exercises as 
 | [02_datatypes](02_datatypes/README.md) | Python data types and collections, dates and time zones, named tuples, and six coding exercises. Section in progress. |
 | [03_conditionals](03_conditionals/README.md) | Conditional logic with nested `if` statements, conditional expressions, and `match`/`case`, practised in six mini projects and exercises 07–12. Section in progress. |
 | [04_loops](04_loops/README.md) | `for` and `while` loops, loop control, the walrus operator (`:=`), and dictionary-based discount calculations. Exercises 13–18; section in progress. |
-| [05_functions](05_functions/README.md) | Functions, parameters, return values, variable scope, and `nonlocal`/`global`, with grading and loyalty exercises 19–20. Section in progress. |
+| [05_functions](05_functions/README.md) | Functions, variable scope, flexible arguments (`*args`/`**kwargs`), and grading, loyalty, and invoice exercises 19–21. Section in progress. |
 
 Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders will be added to this overview as the course progresses.
 

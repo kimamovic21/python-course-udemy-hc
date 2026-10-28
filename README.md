@@ -5,6 +5,7 @@ Learn by Building 50 Projects
 My Python learning repository, starting with the basics and adding exercises as I follow the course.
 
 - [Udemy course](https://www.udemy.com/course/100-days-of-python)
+- [ChaiCode](https://chaicode.com/) — the instructor's website and learning platform.
 - [Course diagrams](https://app.eraser.io/workspace/xltiZYV3fLYZuUEtfUal)
 
 ## Folder overview
@@ -15,7 +16,8 @@ My Python learning repository, starting with the basics and adding exercises as 
 | [02_datatypes](02_datatypes/README.md) | Python data types and collections, dates and time zones, named tuples, and six coding exercises. Section in progress. |
 | [03_conditionals](03_conditionals/README.md) | Conditional logic with nested `if` statements, conditional expressions, and `match`/`case`, practised in six mini projects and exercises 07–12. Section in progress. |
 | [04_loops](04_loops/README.md) | `for` and `while` loops, loop control, the walrus operator (`:=`), and dictionary-based discount calculations. Exercises 13–18; section in progress. |
-| [05_functions](05_functions/README.md) | Functions, scope, flexible arguments, return values, recursion, and `lambda` with `filter()`/`map()`. Exercises 19–22; section in progress. |
+| [05_functions](05_functions/README.md) | Functions, scope, flexible arguments, recursion, lambdas, docstrings, and `help()`. Exercises 19–22; section in progress. |
+| [06_chai_business](06_chai_business/README.md) | Organising code into modules and packages, importing functions, and understanding Python's `__pycache__`. Section in progress. |
 
 Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders will be added to this overview as the course progresses.
 

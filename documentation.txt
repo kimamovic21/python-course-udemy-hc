@@ -164,3 +164,11 @@ Coding exercise 21: Order invoice in Python
 44. Lambdas, pure vs impure functions
 
 Coding exercise 22: Function types
+
+45. Documenting your functions and built-in functions
+
+Quiz 05: Functions in Python
+
+46. Python imports, modules and init file
+
+Quiz 06: Python import

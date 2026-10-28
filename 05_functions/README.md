@@ -1,8 +1,8 @@
 # 05 — Functions
 
-This section introduces functions, parameters, return values, code reuse, and variable scope. It also covers flexible arguments, early returns, tuple unpacking, pure and impure functions, recursion, and `lambda` with `filter()` and `map()`. Exercises 19–22 apply these ideas to student grade reports, loyalty points, invoices, and function behaviour.
+This section introduces functions, parameters, return values, code reuse, and variable scope. It also covers flexible arguments, early returns, tuple unpacking, pure and impure functions, recursion, and `lambda` with `filter()` and `map()`. The latest example explores docstrings, function metadata, and `help()`. Exercises 19–22 apply these ideas to student grade reports, loyalty points, invoices, and function behaviour.
 
-**Status: in progress.** This checkpoint covers eleven numbered examples and coding exercises 19–22. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers twelve numbered examples and coding exercises 19–22. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -21,6 +21,7 @@ This section introduces functions, parameters, return values, code reuse, and va
 13. Continue with [10_return.py](10_return.py) to explore implicit `None`, early returns, and unpacking a returned tuple.
 14. Continue with [11_types_of_functions.py](11_types_of_functions.py) to compare pure and impure functions, follow recursion, and filter a list with a lambda.
 15. Read the [original challenge 22](CODING_EXERCISE_22.md), then explore [coding_exercise_22.py](coding_exercise_22.py) to practise pure, impure, recursive, and lambda-based functions.
+16. Continue with [12_built_in.py](12_built_in.py) to inspect function documentation, use `help()`, and read a documented bill calculation.
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -47,6 +48,7 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [11_types_of_functions.py](11_types_of_functions.py) | Introducing pure and impure functions, recursive calls, and `lambda` with `filter()`. |
 | [CODING_EXERCISE_22.md](CODING_EXERCISE_22.md) | The original Function Types challenge, maintained manually. |
 | [coding_exercise_22.py](coding_exercise_22.py) | Adding numbers, updating a global counter, calculating a recursive factorial, and squaring a list with `map()`. |
+| [12_built_in.py](12_built_in.py) | Reading `__doc__` and `__name__`, displaying `help(len)`, and documenting a bill function. |
 
 ## Example 01: Reusing an Order Function
 
@@ -452,6 +454,8 @@ All cups poured
 
 ## Coding exercise 22: Function Types
 
+**Completed: Udemy tests passed.**
+
 Read the [original challenge](CODING_EXERCISE_22.md) and the [Python solution](coding_exercise_22.py).
 
 The solution contains four functions:
@@ -489,6 +493,39 @@ display:
 
 `impure_increment()` uses the counter's current state, so successive calls return different values. `pure_add()` calculates its result entirely from its arguments.
 
+## Example 12: Docstrings and Built-in Help
+
+Read [12_built_in.py](12_built_in.py). A **docstring** is a string placed at the beginning of a function body to describe its purpose.
+
+- `chai_flavor.__doc__` reads the function's docstring, `Return the flavor of chai.`
+- `chai_flavor.__name__` reads its name, `chai_flavor`.
+- `help(len)` displays documentation for the built-in `len()` function, which returns the number of items in an object such as a list or string.
+
+The script first prints:
+
+```text
+Return the flavor of chai.
+chai_flavor
+```
+
+This is followed by the help text for `len()`. Its exact presentation can vary with the Python version and terminal. Reading the function metadata does not call `chai_flavor()`.
+
+The file also defines `generate_bill(chai=0, samosa=0)`. Its docstring describes the parameters and returned value. The calculation charges 10 rupees per chai and 15 per samosa, then returns a tuple containing the total and a thank-you message.
+
+After loading the function, this example call:
+
+```python
+print(generate_bill(chai=2, samosa=3))
+```
+
+displays:
+
+```text
+(65, 'Thank you for visiting chaicode.com')
+```
+
+The script defines `generate_bill()` without calling it, so this bill appears only when a caller requests it.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -507,9 +544,10 @@ python 05_functions/08_global_scope.py
 python 05_functions/09_input_params.py
 python 05_functions/10_return.py
 python 05_functions/11_types_of_functions.py
+python 05_functions/12_built_in.py
 ```
 
-All eleven numbered scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
+All twelve numbered scripts include function calls outside their definitions, so running them displays the output described above. A function definition alone does not run its body.
 
 Exercises 19–22 define functions for automatic testing. Running these files alone does not display a result. The caller supplies the arguments and uses the returned values, as shown in the exercise examples above. `process_transactions()` updates global `loyalty_points`, and `impure_increment()` updates global `counter`.
 

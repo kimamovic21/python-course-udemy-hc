@@ -1,8 +1,8 @@
 # 05 — Functions
 
-This section introduces functions, parameters, return values, code reuse, and variable scope. The examples progress from chai orders and small workflows to `nonlocal`/`global`, positional and keyword arguments, and collecting extra arguments with `*args`/`**kwargs`. Exercises 19–21 apply these ideas to student grade reports, loyalty points, and invoices.
+This section introduces functions, parameters, return values, code reuse, and variable scope. It also covers flexible arguments, early returns, tuple unpacking, pure and impure functions, recursion, and `lambda` with `filter()` and `map()`. Exercises 19–22 apply these ideas to student grade reports, loyalty points, invoices, and function behaviour.
 
-**Status: in progress.** This checkpoint covers nine numbered examples and coding exercises 19–21. More lessons will be added as I continue the course.
+**Status: in progress.** This checkpoint covers eleven numbered examples and coding exercises 19–22. More lessons will be added as I continue the course.
 
 ## Learning order
 
@@ -18,6 +18,9 @@ This section introduces functions, parameters, return values, code reuse, and va
 10. Read the [original challenge 20](CODING_EXERCISE_20.md), then explore [coding_exercise_20.py](coding_exercise_20.py) to apply a bonus and accumulate loyalty points.
 11. Continue with [09_input_params.py](09_input_params.py) to explore list mutation, positional and keyword arguments, extra arguments, and a `None` default.
 12. Read the [original challenge 21](CODING_EXERCISE_21.md), then explore [coding_exercise_21.py](coding_exercise_21.py) to return an invoice with optional items and charges.
+13. Continue with [10_return.py](10_return.py) to explore implicit `None`, early returns, and unpacking a returned tuple.
+14. Continue with [11_types_of_functions.py](11_types_of_functions.py) to compare pure and impure functions, follow recursion, and filter a list with a lambda.
+15. Read the [original challenge 22](CODING_EXERCISE_22.md), then explore [coding_exercise_22.py](coding_exercise_22.py) to practise pure, impure, recursive, and lambda-based functions.
 
 Follow this order even if your editor sorts the files differently. The numbered examples are explained below.
 
@@ -40,6 +43,10 @@ Follow this order even if your editor sorts the files differently. The numbered 
 | [09_input_params.py](09_input_params.py) | Passing a mutable list, using positional and keyword arguments, collecting extra arguments, and creating a list from a `None` default. |
 | [CODING_EXERCISE_21.md](CODING_EXERCISE_21.md) | The original Order Invoice Generator challenge, maintained manually. |
 | [coding_exercise_21.py](coding_exercise_21.py) | Returning an invoice with a default customer name, variable items, and named charges. |
+| [10_return.py](10_return.py) | Demonstrating implicit `None`, explicit and early returns, and unpacking three returned values. |
+| [11_types_of_functions.py](11_types_of_functions.py) | Introducing pure and impure functions, recursive calls, and `lambda` with `filter()`. |
+| [CODING_EXERCISE_22.md](CODING_EXERCISE_22.md) | The original Function Types challenge, maintained manually. |
+| [coding_exercise_22.py](coding_exercise_22.py) | Adding numbers, updating a global counter, calculating a recursive factorial, and squaring a list with `map()`. |
 
 ## Example 01: Reusing an Order Function
 
@@ -386,6 +393,102 @@ Total Amount Due: 0.0
 
 Empty item and charge sections are omitted. The starting value `0.0` in `sum()` keeps the total at `0.0` when there are no charges. The function returns the text; the example caller uses `print()` to display it.
 
+## Example 10: Return Values and Early Returns
+
+Read [10_return.py](10_return.py). The active code demonstrates several return behaviours:
+
+- `idle_chaiwala()` contains `pass`, a placeholder that does nothing. Reaching the end without an explicit `return` returns `None`, which the caller prints.
+- `sold_cups()` returns `120`. The caller stores that value in `total`, then prints it.
+- `chai_status(0)` returns `"Sorry, chai over"` immediately. With `5`, the function reaches the next return and gives `"Chai is ready"`.
+- `return` ends the current function call. The `print("chai")` below the unconditional return is unreachable and never runs.
+- `chai_report()` returns `100, 20, 10` as one tuple. `sold, remaining, not_paid = chai_report()` unpacks its values into three variables. The script prints `sold` and `remaining`; `not_paid` receives `10`.
+
+The earlier `make_chai()` example is commented out and does not run.
+
+Expected output:
+
+```text
+None
+120
+Sorry, chai over
+Chai is ready
+Sold:  100
+Remaining:  20
+```
+
+## Example 11: Function Behaviour, Recursion, and Filtering
+
+Read [11_types_of_functions.py](11_types_of_functions.py).
+
+| Function | Behaviour |
+| --- | --- |
+| `pure_chai(cups)` | Returns `cups * 10` using its input, without changing external state. For example, `pure_chai(3)` returns `30`. |
+| `impure_chai(cups)` | Adds `cups` to the global `total_chai`. Changing state outside the function is a side effect. |
+| `pour_chai(n)` | Prints the current number and calls itself with `n - 1` until it reaches `0`. |
+
+The script defines `pure_chai()` and `impure_chai()` without calling them, so they produce no output and `total_chai` stays at `0`.
+
+Calling `pour_chai(3)` starts **recursion**, where a function calls itself. The calls proceed from `3` to `2`, `1`, and `0`. Each call prints its number before checking the stopping condition. At `0`, the function returns `"All cups poured"`. Each earlier call returns that same result, which the outer `print(pour_chai(3))` displays once.
+
+The final example filters a list:
+
+```python
+chai_types = ["light", "kadak", "ginger", "kadak"]
+strong_chai = list(filter(lambda chai: chai != "kadak", chai_types))
+```
+
+`lambda chai: chai != "kadak"` is a short function returning whether a value differs from `"kadak"`. `filter()` keeps values for which this condition is true, and `list()` collects them into a list. Both occurrences of `"kadak"` are removed, leaving `"light"` and `"ginger"`.
+
+Expected output:
+
+```text
+3
+2
+1
+0
+All cups poured
+['light', 'ginger']
+```
+
+## Coding exercise 22: Function Types
+
+Read the [original challenge](CODING_EXERCISE_22.md) and the [Python solution](coding_exercise_22.py).
+
+The solution contains four functions:
+
+| Function | Behaviour |
+| --- | --- |
+| `pure_add(a, b)` | Returns the sum of its two arguments without relying on or changing external state. |
+| `impure_increment()` | Adds `1` to the global `counter` and returns its new value. The counter starts at `0` and accumulates across calls. |
+| `factorial_recursive(n)` | Returns the factorial of a nonnegative integer using recursive calls. The base case is `n == 0`, which returns `1`. |
+| `square_list(nums)` | Returns a new list of squares using a lambda inside `map()`. The input list stays unchanged. |
+
+For `factorial_recursive(5)`, each call multiplies its number by the result of the next call. Reaching `0` stops the recursion and returns `1`; the completed calculation gives `5 * 4 * 3 * 2 * 1 = 120`.
+
+In `square_list()`, `map(lambda number: number**2, nums)` applies the squaring function to every element. `list()` collects those results into a new list. An empty input returns an empty list.
+
+Starting with a fresh counter of `0`, these calls after loading the functions:
+
+```python
+print(pure_add(3, 5))
+print(impure_increment())
+print(impure_increment())
+print(factorial_recursive(5))
+print(square_list([1, 2, 3, 4]))
+```
+
+display:
+
+```text
+8
+1
+2
+120
+[1, 4, 9, 16]
+```
+
+`impure_increment()` uses the counter's current state, so successive calls return different values. `pure_add()` calculates its result entirely from its arguments.
+
 ## How to run these examples
 
 Open the repository root in VS Code, select your Python interpreter, and open an example. Press **Ctrl + S** to format and run it using the project's editor settings.
@@ -402,10 +505,12 @@ python 05_functions/06_scopes.py
 python 05_functions/07_nonlocal.py
 python 05_functions/08_global_scope.py
 python 05_functions/09_input_params.py
+python 05_functions/10_return.py
+python 05_functions/11_types_of_functions.py
 ```
 
-All nine numbered scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
+All eleven numbered scripts include function calls outside their definitions, so running them displays the output shown above. A function definition alone does not run its body.
 
-Exercises 19–21 define functions for automatic testing. Running these files alone does not display a result. The caller supplies the arguments and uses the returned values, as shown in the exercise examples above. Exercise 20 also updates the global `loyalty_points` count.
+Exercises 19–22 define functions for automatic testing. Running these files alone does not display a result. The caller supplies the arguments and uses the returned values, as shown in the exercise examples above. `process_transactions()` updates global `loyalty_points`, and `impure_increment()` updates global `counter`.
 
 See the [main README](../README.md#quick-start) for editor setup.

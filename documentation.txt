@@ -158,3 +158,9 @@ Coding exercise 20: Loyalty points tracker
 42. Handling arguments in function in Python
 
 Coding exercise 21: Order invoice in Python
+
+43. Handle multiple return in Python
+
+44. Lambdas, pure vs impure functions
+
+Coding exercise 22: Function types

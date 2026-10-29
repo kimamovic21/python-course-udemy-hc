@@ -172,3 +172,22 @@ Quiz 05: Functions in Python
 46. Python imports, modules and init file
 
 Quiz 06: Python import
+
+
+
+Section 06: Comprehensions in Python
+
+
+47. What are comprehensions in Python ?
+
+48. List comprehensions in Python
+
+49. Set comprehensions in Python
+
+50. Dictionary comprehensions in Python
+
+51. Generator comprehensions for memory optimization
+
+Coding exercise 23: Smart inventory filter
+
+Quiz 07: Comprehensions in Python

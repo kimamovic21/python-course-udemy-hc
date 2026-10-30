@@ -206,3 +206,13 @@ Section 07: Generators and decorators in Python
 55. Yield from and close the generators
 
 Coding exercise 24: Smart token dispenser
+
+56. Decorators in Python
+
+57. Build a logger with decorator
+
+58. Build an authorization decorator
+
+Coding exercise 25: Caching expensive calculations
+
+Quiz 08: Generators and decorators in Python

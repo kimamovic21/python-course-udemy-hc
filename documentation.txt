@@ -191,3 +191,18 @@ Section 06: Comprehensions in Python
 Coding exercise 23: Smart inventory filter
 
 Quiz 07: Comprehensions in Python
+
+
+
+Section 07: Generators and decorators in Python
+
+
+52. Generators with yield and next methods
+
+53. Infinite generators in Python
+
+54. Send value to generators
+
+55. Yield from and close the generators
+
+Coding exercise 24: Smart token dispenser

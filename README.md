@@ -19,6 +19,7 @@ My Python learning repository, starting with the basics and adding exercises as 
 | [05_functions](05_functions/README.md) | Functions, scope, flexible arguments, recursion, lambdas, docstrings, and `help()`. Exercises 19–22; section in progress. |
 | [06_chai_business](06_chai_business/README.md) | Organising code into modules and packages, importing functions, and understanding Python's `__pycache__`. Section in progress. |
 | [07_comprehensions](07_comprehensions/README.md) | List, set, and dictionary comprehensions, generator expressions, and inventory filtering (exercise 23). Section completed. |
+| [08_generators](08_generators/README.md) | Generator functions with `yield`, `next()`, `.send()`, `yield from`, and `.close()`, plus a token dispenser (exercise 24). Section in progress. |
 
 Start with **01_starter**, the first folder in this project. Each folder has its own README with code explanations, running instructions, and expected output. New folders will be added to this overview as the course progresses.
 
